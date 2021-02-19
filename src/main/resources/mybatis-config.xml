@@ -7,6 +7,7 @@
     <typeAliases>
         <!-- 别名定义 -->
         <typeAlias type="com.yates.entity.Merchant" alias="merchant"/>
+        <typeAlias type="com.yates.vo.CustomVo" alias="customVo"/>
     </typeAliases>
 
 </configuration>

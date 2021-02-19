@@ -23,4 +23,31 @@
     <delete id="deleteMerchantById" parameterType="int">
         delete from t_seckill_merchant where id = #{id}
     </delete>
+
+    <sql id="customSql">
+         <if test="merchantVo != null">
+             <if test="merchantVo.merchantName != null and merchantVo.merchantName != ''">
+                 and merchantVo.merchantName = "${merchantVo.merchantName}"
+             </if>
+             <if test="merchantVo.me rchantShopname != null and merchantVo.merchantShopname != ''">
+                 and merchantVo.merchantShopname = "${merchantVo.merchantShopname}"
+             </if>
+             <if test="merchantVo.mercahntAccount != null and merchantVo.mercahntAccout != ''">
+                 and merchantVo.merchantAccount = "${merchantVo.merchantAccount}"
+             </if>
+             <if test="merchantVo.merchantPassword != null and merchantVo.merchantPassword != ''">
+                 and merchantVo.merchantPassword = "${merchantVo.merchantPassword}"
+             </if>
+             <if test="merchantVo.merchantScope != null">
+                 and merchantVo.merchantScope = "${merchantVo.merchantScope}"
+             </if>
+         </if>
+    </sql>
+
+    <select id="queryMerchants" parameterType="customVo" resultType="merchant">
+        select * from t_seckill_merchant
+        <where>
+            <include refid="customSql"></include>
+        </where>
+    </select>
 </mapper>
