@@ -2,12 +2,14 @@ package com.yates.controller;
 
 import com.yates.entity.Merchant;
 import com.yates.service.MerchantService;
+import com.yates.vo.CustomVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/merchant")
@@ -49,4 +51,10 @@ public class MerchantController {
         return "/merchant/query";
     }
 
+    @RequestMapping("/querymerchants")
+    public String queryMerchants(HttpServletRequest request, CustomVo customVo){
+        List<Merchant> merchants =  merchantService.queryMerchants(customVo);
+        request.setAttribute("merchantlist", merchants);
+        return "/merchant/list";
+    }
 }
