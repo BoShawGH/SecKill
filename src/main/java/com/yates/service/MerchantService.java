@@ -4,7 +4,6 @@ import com.yates.dao.MerchantDao;
 import com.yates.entity.Merchant;
 
 import com.yates.vo.CustomVo;
-import com.yates.vo.MerchantVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

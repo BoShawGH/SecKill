@@ -44,7 +44,7 @@
          </if>
     </sql>
 
-    <select id="queryMerchants" parameterType="customVo" resultType="merchant">
+    <select id="queryMerchants" parameterType="commonVo" resultType="merchant">
         select * from t_seckill_merchant
         <where>
             <include refid="customSql"></include>
