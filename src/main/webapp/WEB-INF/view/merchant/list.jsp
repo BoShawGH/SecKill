@@ -13,7 +13,7 @@
 </head>
 <body>
 <c:forEach items="${merchantlist}" var="item">
-    商家的姓名:${item.merchantName },
+    商家的姓名:${item.merchantName},
     商家的店铺名称:${item.merchantShopname },
     商家账号:${item.merchantAccount },
     商家密码:${item.merchantPassword },
