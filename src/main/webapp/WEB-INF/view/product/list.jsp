@@ -7,7 +7,7 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
 <body>
-<div style="text-align: center;"><a href="${pageContext.request.contextPath}/product/toapplyproduct">申请秒杀商品</a></div>
+<div style="text-align: center;"><a href="${pageContext.request.contextPath}/product/applyproduct">申请秒杀商品</a></div>
 <table border="2">
     <thead>
         <tr>

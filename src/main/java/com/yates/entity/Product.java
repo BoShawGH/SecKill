@@ -20,7 +20,7 @@ public class Product {
     private String auditDateString = "1900-01-01 00:00:00";
     private String startTimeString;
     private String endTimeString;
-    private int auditState;
+    private int auditState; //0：未审核 1：审核通过 2：审核不通过
     private BigDecimal secPrice;
     private int productCount;
     private int stockCount;

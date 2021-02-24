@@ -25,17 +25,14 @@
 
 </body>
 <script type="text/javascript">
-    // function submit(){
-    //     $.ajax({
-    //         type:'post',
-    //         data:$("#productInfo").serialize(),
-    //         success:function(){
-    //             console.log(data);
-    //         }
-    //     });
-    // }
-    function submit(obj){
-        obj.parent.sumbit();
+    function submit(){
+        $.ajax({
+            type:'post',
+            data:$("#productInfo").serialize()
+        });
     }
+    // function submit(obj){
+    //     obj.parent.sumbit();
+    // }
 </script>
 </html>
