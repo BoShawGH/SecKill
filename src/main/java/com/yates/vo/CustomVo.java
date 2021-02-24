@@ -1,7 +1,5 @@
 package com.yates.vo;
 
-import com.yates.entity.User;
-
 public class CustomVo {
     private MerchantVo merchantVo;
     private UserVo userVo;

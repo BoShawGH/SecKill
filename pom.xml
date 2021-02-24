@@ -29,7 +29,7 @@
 
         <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
         <org.mybatis.version>3.4.5</org.mybatis.version>
-        <org.mybatis.spring.version>1.3.0</org.mybatis.spring.version>
+        <org.mybatis.spring.version>2.0.2</org.mybatis.spring.version>
     </properties>
 
    <dependencies>
@@ -124,6 +124,11 @@
            <artifactId>annotations-java5</artifactId>
            <version>RELEASE</version>
            <scope>compile</scope>
+       </dependency>
+       <dependency>
+           <groupId>javax</groupId>
+           <artifactId>javaee-api</artifactId>
+           <version>7.0</version>
        </dependency>
    </dependencies>
 

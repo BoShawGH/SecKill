@@ -1,6 +1,6 @@
 package com.yates.service;
 
-import com.yates.dao.MerchantDao;
+import com.yates.dao.IMerchantDao;
 import com.yates.entity.Merchant;
 
 import com.yates.vo.CustomVo;
@@ -10,27 +10,28 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MerchantService implements MerchantDao {
+public class MerchantService{
     @Autowired
-    public MerchantDao merchantDao;
+    public IMerchantDao IMerchantDao;
 
     public Merchant queryMerchantById(int id){
-        return merchantDao.queryMerchantById(id);
+        Merchant merchant = IMerchantDao.queryMerchantById(id);
+        return merchant;
     }
 
     public void insertMerchant(Merchant merchant){
-        merchantDao.insertMerchant(merchant);
+        IMerchantDao.insertMerchant(merchant);
     }
 
     public void deleteMerchantById(int id){
-        merchantDao.deleteMerchantById(id);
+        IMerchantDao.deleteMerchantById(id);
     }
 
     public void updateMerchant(Merchant merchant){
-        merchantDao.updateMerchant(merchant);
+        IMerchantDao.updateMerchant(merchant);
     }
 
     public List<Merchant> queryMerchants(CustomVo customVo){
-        return merchantDao.queryMerchants(customVo);
+        return IMerchantDao.queryMerchants(customVo);
     }
 }

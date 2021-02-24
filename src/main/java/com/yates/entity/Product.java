@@ -1,11 +1,11 @@
 package com.yates.entity;
 
+import javax.persistence.Column;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Product {
+    @Column
     private int id;
     private int productId;
     private String productTitle;

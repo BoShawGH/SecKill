@@ -3,10 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.yates.dao.MerchantDao">
+<mapper namespace="com.yates.dao.IMerchantDao">
 
     <select id="queryMerchantById" parameterType="int" resultType="merchant">
-		select merchantname,merchantaccount,merchantpassword,merchantscope,merchantshopname from t_seckill_merchant where id = #{value}
+		select * from t_seckill_merchant where id = #{id}
 	</select>
 
     <insert id="insertMerchant" parameterType="merchant">
@@ -17,7 +17,9 @@
     </insert>
 
     <update id="updateMerchant" parameterType="merchant">
-        update t_seckill_merchant set merchantname=#{merchantName}, merchantaccount=#{merchantAccount}, merchantpassword=#{merchantPassword}, merchantscope=#{merchantScope}, merchantshopname=#{merchantShopname}
+        update t_seckill_merchant set
+        merchantname=#{merchantName}, merchantaccount=#{merchantAccount}, merchantpassword=#{merchantPassword},
+        merchantscope=#{merchantScope}, merchantshopname=#{merchantShopname} where id=#{id}
     </update>
 
     <delete id="deleteMerchantById" parameterType="int">

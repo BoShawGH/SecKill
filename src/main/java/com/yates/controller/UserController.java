@@ -5,7 +5,6 @@ import com.yates.service.UserService;
 import com.yates.vo.CustomVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +22,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/insert")
-    public void insertUser(User user){
+    public String insertUser(User user){
         userService.insertUser(user);
+        return "redirect:/user/queryusers";
     }
 
     @RequestMapping(value = "/toupdate")
@@ -35,13 +35,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/update")
-    public void updateUser(HttpServletRequest request, User user){
+    public String updateUser(HttpServletRequest request, User user){
         userService.updateUser(user);
+        return "redirect:/user/queryusers";
     }
 
     @RequestMapping(value="/delete")
-    public void deleteUserById(int id){
+    public String deleteUserById(int id){
         userService.deleteUserById(id);
+        return "redirect:/user/queryusers";
     }
 
     @RequestMapping(value="/querybyid")

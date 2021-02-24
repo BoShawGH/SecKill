@@ -12,7 +12,7 @@
     </insert>
 
     <update id="updateUser" parameterType="user">
-        update t_seckill_user set username=#{userName}, useraccount=#{userAccount}, userpassword=#{userPassword}, usergender=#{userGender}, userage=#{userAge}, useraddress=#{userAddress}, useremail=#{userEmail}
+        update t_seckill_user set username=#{userName}, useraccount=#{userAccount}, userpassword=#{userPassword}, usergender=#{userGender}, userage=#{userAge}, useraddress=#{userAddress}, useremail=#{userEmail} where id=#{id}
     </update>
 
     <select id="queryUserById" parameterType="int" resultType="user">

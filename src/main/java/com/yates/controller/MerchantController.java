@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -15,45 +14,50 @@ import java.util.List;
 @RequestMapping("/merchant")
 public class MerchantController {
     @Autowired
-    MerchantService merchantService;
+    public MerchantService merchantService;
 
     @RequestMapping("/toinsert")
-    public String toinsert(){
+    public String toinsert() {
         return "/merchant/insert";
     }
-    @RequestMapping(value = "/insert", produces = {"application/text;charset=UTF-8"})
-    public void insert(Merchant merchantInfo){
+
+    @RequestMapping(value = "/insert")
+    public String insert(Merchant merchantInfo) {
         System.out.println(merchantInfo);
         merchantService.insertMerchant(merchantInfo);
+        return "redirect:/merchant/querymerchants";
     }
 
     @RequestMapping("/toupdate")
-    public String toUpdate(HttpServletRequest request, int id){
+    public String toUpdate(HttpServletRequest request, int id) {
         Merchant merchant = merchantService.queryMerchantById(id);
         request.setAttribute("merchant", merchant);
         return "/merchant/update";
     }
-    @RequestMapping(value="/update",produces = {"application/text;charset=UTF-8"})
-    public void update(HttpServletRequest request, Merchant merchant){
+
+    @RequestMapping(value = "/update")
+    public String update(HttpServletRequest request, Merchant merchant) {
         merchantService.updateMerchant(merchant);
         System.out.println(merchant);
+        return "redirect:/merchant/querymerchants";
     }
 
     @RequestMapping("/delete")
-    public void toDelete(HttpServletRequest request, int id){
-       merchantService.deleteMerchantById(id);
+    public String toDelete(HttpServletRequest request, int id) {
+        merchantService.deleteMerchantById(id);
+        return "redirect:/merchant/querymerchants";
     }
 
     @RequestMapping("/querybyid")
-    public String queryOneInfo(HttpServletRequest request, int id){
+    public String queryMerchantById(HttpServletRequest request, int id) {
         Merchant merchant = merchantService.queryMerchantById(id);
         request.setAttribute("merchant", merchant);
         return "/merchant/query";
     }
 
     @RequestMapping("/querymerchants")
-    public String queryMerchants(HttpServletRequest request, CustomVo customVo){
-        List<Merchant> merchants =  merchantService.queryMerchants(customVo);
+    public String queryMerchants(HttpServletRequest request, CustomVo customVo) {
+        List<Merchant> merchants = merchantService.queryMerchants(customVo);
         request.setAttribute("merchantlist", merchants);
         return "/merchant/list";
     }
