@@ -35,6 +35,7 @@
             <array>
                 <value>classpath:mappers/MerchantDao.xml</value>
                 <value>classpath:mappers/IUserDao.xml</value>
+                <value>classpath:mappers/IProductDao.xml</value>
             </array>
         </property>
         <!--        <property name="mapperLocations" value="classpath:com/yates/dao/xml/test/PersonDao.xml"/>-->

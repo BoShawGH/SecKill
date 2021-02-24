@@ -1,9 +1,12 @@
 package com.yates.entity;
 
+import javax.persistence.Column;
+
 /**
  * 商家后台 商家实体
  */
 public class Merchant {
+    @Column
     private int id;
     private String merchantName;
     private String merchantAccount;
@@ -11,12 +14,12 @@ public class Merchant {
     private String merchantScope;
     private String merchantShopname;
 
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getMerchantName() {
@@ -66,39 +69,5 @@ public class Merchant {
                 + merchantShopname + "]";
     }
 
-   public static class MerchantBuilder{
-    private int id;
-    private String merchantName;
-    private String merchantAccount;
-    private String merchantPassword;
-    private String merchantScope;
-    private String merchantShopname;
-    private Merchant merchant = new Merchant();
-
-    public MerchantBuilder setMerchantName(String name){
-        merchant.setMerchantName(name);
-        return this;
-    }
-    public MerchantBuilder setMerchantAccount(String account){
-        merchant.setMerchantAccount(account);
-        return this;
-    }
-    public MerchantBuilder setMerchantPassword(String password){
-        merchant.setMerchantPassword(password);
-        return this;
-    }
-    public MerchantBuilder setMerchantScope(String scope){
-        merchant.setMerchantScope(scope);
-        return this;
-    }
-    public MerchantBuilder setMerchantShopname(String shopname){
-        merchant.setMerchantShopname(shopname);
-        return this;
-    }
-
-    public Merchant build(){
-        return merchant;
-    }
-   }
 
 }

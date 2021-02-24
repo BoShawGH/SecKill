@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yates.dao.IProductDao">
+    <insert id="applyProduct" parameterType="product">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_seckill_product(productid, producttitle, productpicture, originprice, merchantid, applydate, auditstate, starttime, endtime, secprice, productcount, stockcount, description)
+        value(#{productId}, #{productTitle}, #{productPicture}, #{originPrice}, #{merchantId}, #{applyDate}, #{auditState}, #{startTime}, #{endTime}, #{secPrice}, #{productCount}, #{stockCount}, #{description})
+    </insert>
+
+    <delete id="deleteProductById" parameterType="int">
+        delete from t_seckill_product where id = #{id}
+    </delete>
+
+    <update id="updateProduct" parameterType="product">
+        update t_seckill_product set
+        productid=#{productId}, producttitle=#{productTitle}, productpicture=#{productPicture}, originprice#{originPrice}, merchantid=#{merchantId}, applydate=#{applyDate},
+        auditdate=#{auditDate}, auditstate=#{auditState}, starttime=#{startTime}, endtime=#{endTime}, secprice=#{secPrice}, productcount=#{productCount},
+        stockcount=#{stockCount}, description=#{description} where id=#{id}
+    </update>
+
+    <update id="updateProductState" parameterType="commonVo">
+        update t_seckill_product set auditstate=#{productVo.auditState} where id=#{productVo.id}
+    </update>
+
+    <select id="queryProductById" parameterType="int" resultType="product">
+        select * from t_seckill_product where id = #{id}
+    </select>
+
+    <sql id="commonSql">
+        <if test="productVo != null">
+            <if test="productVo.productId != null and product.productId != ''">
+                and productVo.productId = "${productVo.productId}"
+            </if>
+            <if test="productVo.productTitle != null and product.productTitle != ''">
+                and productVo.productTitle like "%${productVo.productTitle}%"
+            </if>
+
+            <if test="productVo.secPriceRangeFloor != null and product.secPriceRangeFloor != ''">
+                and productVo.secPrice <![CDATA[ >= ]]> "${productVo.secPriceRangeFloor}"
+            </if>
+            <if test="productVo.secPriceRangeCeil != null and product.secPriceRangeCeil != ''">
+                and productVo.secPrice <![CDATA[ <= ]]> "${productVo.secPriceRangeCeil}"
+            </if>
+
+            <if test="productVo.originPriceRangeFloor != null and product.originPriceRangeFloor != ''">
+                and productVo.originPrice <![CDATA[ >= ]]> "${productVo.originPriceRangeFloor}"
+            </if>
+            <if test="productVo.originPriceRangeCeil != null and product.originPriceRangeCeil != ''">
+                and productVo.originPrice <![CDATA[ <= ]]> "${productVo.originPriceRangeCeil}"
+            </if>
+
+            <if test="productVo.applyDateRangeFloor != null and product.applyDateRangeFloor != ''">
+                and productVo.applyDate <![CDATA[ >= ]]> "${productVo.applyDateRangeFloor}"
+            </if>
+            <if test="productVo.applyDateRangeCeil != null and product.applyDateRangeCeil != ''">
+                and productVo.applyDate <![CDATA[ <= ]]> "${productVo.applyDateRangeCeil}"
+            </if>
+
+            <if test="productVo.auditDateRangeFloor != null and product.auditDateRangeFloor != ''">
+                and productVo.auditDate <![CDATA[ >= ]]> "${productVo.auditDateRangeFloor}"
+            </if>
+            <if test="productVo.auditDateRangeCeil != null and product.auditDateRangeCeil != ''">
+                and productVo.auditDate <![CDATA[ <= ]]> "${productVo.auditDateRangeCeil}"
+            </if>
+
+            <if test="productVo.startTimeRangeFloor != null and product.startTimeRangeFloor != ''">
+                and productVo.startTime <![CDATA[ >= ]]> "${productVo.startTimeRangeFloor}"
+            </if>
+            <if test="productVo.startTimeRangeCeil != null and product.startTimeRangeCeil != ''">
+                and productVo.startTime <![CDATA[ <= ]]> "${productVo.startTimeRangeCeil}"
+            </if>
+
+            <if test="productVo.endTimeRangeFloor != null and product.endTimeRangeFloor != ''">
+                and productVo.endTime <![CDATA[ >= ]]> "${productVo.endTimeRangeFloor}"
+            </if>
+            <if test="productVo.endTimeRangeCeil != null and product.endTimeRangeCeil != ''">
+                and productVo.endTime <![CDATA[ <= ]]> "${productVo.endTimeRangeCeil}"
+            </if>
+
+            <if test="productVo.productCountRangeFloor != null and product.productCountRangeFloor != ''">
+                and productVo.productCount <![CDATA[ >= ]]> "${productVo.productCountRangeFloor}"
+            </if>
+            <if test="productVo.productCountRangeCeil != null and product.productCountRangeCeil != ''">
+                and productVo.productCount <![CDATA[ <= ]]> "${productVo.productCountRangeCeil}"
+            </if>
+
+            <if test="productVo.stockCountFloor != null and product.stockCountFloor != ''">
+                and productVo.stockCount <![CDATA[ >= ]]> "${productVo.stockCountFloor}"
+            </if>
+            <if test="productVo.stockCountCeil != null and product.stockCountCeil != ''">
+                and productVo.stockCountCeil <![CDATA[ <= ]]> "${productVo.stockCountCeil}"
+            </if>
+
+
+            <if test="productVo.auditState != null and auditState != ''">
+                and productVo.auditState = "${productVo.auditState}"
+            </if>
+            <if test="productVo.merchantId != null and product.merchantId != ''">
+                and productVo.merchantId = "${productVo.merchantId}"
+            </if>
+<!--            <if test="productVo.productCount != null and product.productCount != ''">-->
+<!--                and productVo.productCount = "${productVo.productCount}"-->
+<!--            </if>-->
+<!--            <if test="productVo.stockCount != null and product.stockCount != ''">-->
+<!--                and productVo.stockCount = "${productVo.stockCount}"-->
+<!--            </if>-->
+            <if test="productVo.description != null and product.description != ''">
+                and productVo.description like "%${productVo.description}%"
+            </if>
+        </if>
+    </sql>
+
+    <select id="listProducts" parameterType="commonVo" resultType="product">
+        select * from t_seckill_product
+        <where>
+            <include refid="commonSql"></include>
+        </where>
+    </select>
+</mapper>

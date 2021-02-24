@@ -5,14 +5,37 @@
     <title>Title</title>
 </head>
 <body>
-<c:forEach items="${users}" var="item">
-    用户姓名:${item.userName}
-    用户账号:${item.userAccount}
-    用户密码:${item.userPassword}
-    用户性别:${item.userGender}
-    用户年龄:${item.userAge}
-    用户地址:${item.userAddress}
-    用户邮箱:${item.userEmail}
-</c:forEach>
+<div style="text-align: center;"><a href="${pageContext.request.contextPath}/user/toinsert">新增用户</a> </div>
+<table border="2">
+    <thead>
+    <tr>
+        <th>用户姓名</th>
+        <th>用户账号</th>
+        <th>用户密码</th>
+        <th>用户性别</th>
+        <th>用户年龄</th>
+        <th>用户地址</th>
+        <th>用户邮箱</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${users}" var="item">
+    <tr>
+        <td>${item.userName}</td>
+        <td>${item.userAccount}</td>
+        <td>${item.userPassword}</td>
+        <td>${item.userGender}</td>
+        <td>${item.userAge}</td>
+        <td>${item.userAddress}</td>
+        <td>${item.userEmail}</td>
+        <td><a href="${pageContext.request.contextPath}/user/querybyid?id=${item.id}">详情</a>|
+            <a href="${pageContext.request.contextPath}/user/toupdate?id=${item.id}">编辑</a>|
+            <a href="${pageContext.request.contextPath}/user/delete?id=${item.id}">删除</a>
+        </td>
+    </tr>
+    </c:forEach>
+    </tbody>
+</table>
 </body>
 </html>
