@@ -2,6 +2,7 @@ package com.yates.service;
 
 import com.yates.dao.IProductDao;
 import com.yates.entity.Product;
+import com.yates.entity.ProductDetail;
 import com.yates.vo.CustomVo;
 import com.yates.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;

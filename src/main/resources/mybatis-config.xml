@@ -10,6 +10,7 @@
         <typeAlias type="com.yates.vo.CustomVo" alias="commonVo"/>
         <typeAlias type="com.yates.entity.User" alias="user"/>
         <typeAlias type="com.yates.entity.Product" alias="product"/>
+        <typeAlias type="com.yates.entity.ProductDetail" alias="detail"/>
     </typeAliases>
 
 </configuration>
