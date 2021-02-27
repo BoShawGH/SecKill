@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.UnsupportedTemporalTypeException;
 import java.util.Date;
 import java.util.List;
@@ -26,13 +27,12 @@ public class ProductService {
      */
     public void applyProduct(Product product){
         product.setApplyDate(LocalDateTime.now());
-        product.setApplyDateString(product.getApplyDate().format(dateTimeFormatter));
         product.setAuditState(0);
         try {
             product.setStartTime(LocalDateTime.parse(product.getStartTimeString(), dateTimeFormatter));
             product.setEndTime(LocalDateTime.parse(product.getEndTimeString(), dateTimeFormatter));
         }catch(UnsupportedTemporalTypeException ex){
-            System.out.println("输入的日期不合法");
+            System.out.println("日期不合法");
             return;
         }
         iProductDao.applyProduct(product);
@@ -69,6 +69,15 @@ public class ProductService {
      * @param product
      */
     public void updateProduct(Product product){
+        try {
+            product.setApplyDate(LocalDateTime.parse(product.getApplyDateString(), dateTimeFormatter));
+            product.setStartTime(LocalDateTime.parse(product.getStartTimeString(), dateTimeFormatter));
+            product.setEndTime(LocalDateTime.parse(product.getEndTimeString(), dateTimeFormatter));
+            if(!product.getAuditDateString().equals(""))
+                product.setAuditDate(LocalDateTime.parse(product.getAuditDateString(), dateTimeFormatter));
+        }catch(DateTimeParseException exception){
+            exception.printStackTrace();
+        }
         iProductDao.updateProduct(product);
     }
 
@@ -83,7 +92,6 @@ public class ProductService {
         productVo.setAuditState(state);
         productVo.setId(id);
         productVo.setAuditDate(LocalDateTime.now());
-        productVo.setAuditDateString(productVo.getAuditDate().format(dateTimeFormatter));
         customVo.setProductVo(productVo);
         iProductDao.updateProductState(customVo);
     }

@@ -19,6 +19,7 @@
             <th>开始时间</th>
             <th>结束时间</th>
             <th>剩余库存</th>
+            <th>审核状态</th>
             <th></th>
         </tr>
     </thead>
@@ -32,6 +33,7 @@
         <td>${item.startTime}</td>
         <td>${item.endTime}</td>
         <td>${item.stockCount}</td>
+        <td>${item.stateString}</td>
         <td>
             <a href="${pageContext.request.contextPath}/product/toupdate?id=${item.id}">修改</a>||
             <a href="${pageContext.request.contextPath}/product/delete?id=${item.id}">删除</a>||

@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.List;
+
 
 @Controller
 @RequestMapping(value = "/product")
@@ -57,10 +59,6 @@ public class ProductController {
     @RequestMapping(value = "/toupdate")
     public String toUpdateById(HttpServletRequest request, int id){
         Product product = productService.queryProductById(id);
-        if(product.getApplyDateString() == null || product.getAuditDateString() == null){
-            product.setApplyDateString(product.getApplyDate().format(dateTimeFormatter));
-            product.setAuditDateString(product.getAuditDate().format(dateTimeFormatter));
-        }
         String startTime = product.getStartTime().format(dateTimeFormatter);
         String endTime = product.getEndTime().format(dateTimeFormatter);
         request.setAttribute("product", product);
@@ -79,15 +77,18 @@ public class ProductController {
 //            product.setEndTimeString(endTimeString);
 //            product.setEndTime(LocalDateTime.parse(endTimeString, dateTimeFormatter));
 //        }
-        product.setApplyDate(LocalDateTime.parse(product.getApplyDateString(), dateTimeFormatter));
-        product.setStartTime(LocalDateTime.parse(product.getStartTimeString(), dateTimeFormatter));
-        product.setEndTime(LocalDateTime.parse(product.getEndTimeString(), dateTimeFormatter));
-        product.setAuditDate(LocalDateTime.parse(product.getAuditDateString(), dateTimeFormatter));
+
         productService.updateProduct(product);
         return "redirect:/product/listproducts";
     }
 
-    @RequestMapping(value = "/updatestate")
+    @RequestMapping(value = "toupdatestate")
+    public String toUpdateState(HttpServletRequest requset, int id){
+        Product product = productService.queryProductById(id);
+        requset.setAttribute("product", product);
+        return "/product/auditproduct";
+    }
+    @RequestMapping(value = "/updatestate", method = RequestMethod.GET)
     public String updateProductState(int id, int state){
         productService.updateProductState(id, state);
         return "redirect:/product/listproducts";
