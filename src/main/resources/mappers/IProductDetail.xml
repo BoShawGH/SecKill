@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yates.dao.IProductDetailDao">
+    <select id="queryById" parameterType="int" resultType="detail">
+        select * from t_seckill_details where id = #{id}
+    </select>
+
+    <update id="updateDetail" parameterType="detail">
+        update t_seckill_details set productid = #{productId}, merchantid=#{merchantId}, productplace=#{productPlace}, productname=#{productName},
+                brandName=#{brandName}, productweight=#{productWeight}, specification=#{specification}, productdetailpicture=#{productDetailPicture}
+                where id =#{id}
+    </update>
+
+    <insert id="insertDetail" parameterType="detail">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_seckill_details(productid, merchantid, productplace, productname, brandname, productweight, specification, productdetailpicture)
+            value (#{productId}, #{merchantId}, #{productPlace}, #{productName}, #{brandName}, #{productWeight}, #{specification}, #{productDetailPicture})
+    </insert>
+</mapper>

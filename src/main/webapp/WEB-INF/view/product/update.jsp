@@ -10,29 +10,35 @@
 <body>
 <form id="productInfo" action="${pageContext.request.contextPath}/product/update">
     <input name="id" value="${product.id}" type="hidden"/>
-    <input name="applyDate" value="${product.applyDate}" readonly></br>
-    <input name="auditDate" value="${product.auditDate}" readonly></br>
-    <input name="merchantId" value="${product.merchantId}" readonly></br>
+    <input name="merchantId" value="${product.merchantId}" type="hidden">
     商品编号：<input name="productId" value="${product.productId}"></br>
     商品名称：<input name="productTitle" value="${product.productTitle}"></br>
     商品图片：<input name="productPicture" value="${product.productPicture}"></br>
-    原价格：<input name="originPrice" value="${product.originPrice}"></br>
-    开始时间：<input name="startTimeString" value="${product.startTimeString}"></br>
-    结束时间：<input name="endTimeString" value="${product.endTimeString}"></br>
+    原价格：  <input name="originPrice" value="${product.originPrice}"></br>
+    申请时间：<input name="applyDateString" value="${product.applyDateString}" readonly></br>
+    审核时间：<input name="auditDateString" value="${product.auditDateString}" readonly></br>
+    开始时间：<input name="startTimeString" value="${startTime}"></br>
+    结束时间：<input name="endTimeString" value="${endTime}"></br>
     秒杀价格：<input name="secPrice" value="${product.secPrice}"></br>
     商品库存：<input name="productCount" value="${product.productCount}"></br>
     剩余库存：<input name="stockCount" value="${product.stockCount}"></br>
     描述：<input name="description" value="${product.description}"></br>
-    <input type="button" value="提交" onclick="submit()">
+    <input type="button" value="提交" onclick="submit(this)">
 </form>
 
 </body>
 <script type="text/javascript">
-    function submit(){
-        $.ajax({
-            type:'post',
-            data:$("#productInfo").serialize()
-        });
+    // function submit(){
+    //     $.ajax({
+    //         type:'post',
+    //         data:$("#productInfo").serialize(),
+    //         success:function(){
+    //             console.log(data);
+    //         }
+    //     });
+    // }
+    function submit(obj){
+        obj.parent.submit();
     }
 </script>
 </html>

@@ -7,7 +7,7 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
 <body>
-<div style="text-align: center;"><a href="${pageContext.request.contextPath}/product/applyproduct">申请秒杀商品</a></div>
+<div style=" text-align: center;"><a href="${pageContext.request.contextPath}/product/toapply">申请秒杀商品</a></div>
 <table border="2">
     <thead>
         <tr>
@@ -19,6 +19,7 @@
             <th>开始时间</th>
             <th>结束时间</th>
             <th>剩余库存</th>
+            <th>审核状态</th>
             <th></th>
         </tr>
     </thead>
@@ -32,10 +33,12 @@
         <td>${item.startTime}</td>
         <td>${item.endTime}</td>
         <td>${item.stockCount}</td>
+        <td>${item.stateString}</td>
         <td>
             <a href="${pageContext.request.contextPath}/product/toupdate?id=${item.id}">修改</a>||
             <a href="${pageContext.request.contextPath}/product/delete?id=${item.id}">删除</a>||
-            <a href="${pageContext.request.contextPath}/product/querybyid?id=${item.id}">详情</a>
+            <a href="${pageContext.request.contextPath}/product/querybyid?id=${item.id}">详情</a>||
+            <a href="/product/toupdatestate?id=${item.id}">审核</a>
         </td>
 
     </tr>

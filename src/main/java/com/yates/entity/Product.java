@@ -3,6 +3,7 @@ package com.yates.entity;
 import javax.persistence.Column;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Product {
     @Column
@@ -16,16 +17,21 @@ public class Product {
     private LocalDateTime auditDate;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private String applyDateString;
-    private String auditDateString = "1900-01-01 00:00:00";
-    private String startTimeString;
-    private String endTimeString;
-    private int auditState; //0：未审核 1：审核通过 2：审核不通过
+    private String applyDateString = "";
+    private String auditDateString = "";
+    private String startTimeString = "";
+    private String endTimeString = "";
+    private int auditState = 0; //0：未审核 1：审核通过 2：审核不通过
+    private String stateString = "";
+
+
+
     private BigDecimal secPrice;
     private int productCount;
     private int stockCount;
     private String description;
 
+    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     public int getId() {
         return id;
     }
@@ -80,38 +86,7 @@ public class Product {
 
     public void setApplyDate(LocalDateTime applyDate) {
         this.applyDate = applyDate;
-    }
-
-    public LocalDateTime getAuditDate() {
-        return auditDate;
-    }
-
-    public void setAuditDate(LocalDateTime auditDate) {
-        this.auditDate = auditDate;
-    }
-
-    public int getAuditState() {
-        return auditState;
-    }
-
-    public void setAuditState(int auditState) {
-        this.auditState = auditState;
-    }
-
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
+        this.setApplyDateString(applyDate.format(this.dateTimeFormatter));
     }
 
     public String getApplyDateString() {
@@ -122,6 +97,15 @@ public class Product {
         this.applyDateString = applyDateString;
     }
 
+    public LocalDateTime getAuditDate() {
+        return auditDate;
+    }
+
+    public void setAuditDate(LocalDateTime auditDate) {
+        this.auditDate = auditDate;
+        this.setAuditDateString(auditDate.format(this.dateTimeFormatter));
+    }
+
     public String getAuditDateString() {
         return auditDateString;
     }
@@ -130,12 +114,48 @@ public class Product {
         this.auditDateString = auditDateString;
     }
 
+    public int getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(int auditState) {
+        this.auditState = auditState;
+        this.setStateString(auditState);
+    }
+
+    public String getStateString() {
+        return stateString;
+    }
+
+    public void setStateString(int auditState) {
+        String[] state = {"未审核","通过","未通过"};
+        this.stateString = state[auditState];
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+        this.setStartTimeString(startTime.format(dateTimeFormatter));
+    }
+
     public String getStartTimeString() {
         return startTimeString;
     }
 
     public void setStartTimeString(String startTimeString) {
         this.startTimeString = startTimeString;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+        this.setEndTimeString(endTime.format(dateTimeFormatter));
     }
 
     public String getEndTimeString() {
@@ -199,3 +219,4 @@ public class Product {
                 '}';
     }
 }
+

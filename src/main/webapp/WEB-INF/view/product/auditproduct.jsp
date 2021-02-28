@@ -10,9 +10,7 @@
 <body>
 <form id="productInfo" action="${pageContext.request.contextPath}/product/updatestate">
     <input name="id" value="${product.id}" type="hidden"/>
-    <input name="applyDate" value="${product.applyDate}" type="hidden">
-    <input name="auditDate" value="${product.auditDate}" type="hidden">
-    <input name="merchantId" value="${product.merchantId}" type="hidden">
+    <input name="auditDateString" value="${product.auditDateString}" type="hidden">
     <table>
     <thead>
     <tr>
@@ -20,6 +18,7 @@
         <th>商品名称</th>
         <th>商品图片</th>
         <th>商家编号</th>
+        <th>申请时间</th>
         <th>原价格</th>
         <th>秒杀价格</th>
         <th>开始时间</th>
@@ -37,16 +36,17 @@
         <td><input name="productTitle" value="${product.productTitle}" readonly></td>
         <td><input name="productPicture" value="${product.productPicture}" readonly></td>
         <td><input name="merchantId" value="${product.merchantId}" readonly></td>
+        <td><input name="applyDateString" value="${product.applyDateString}" readonly></td>
         <td><input name="originPrice" value="${product.originPrice}" readonly></td>
         <td><input name="secPrice" value="${product.secPrice}" readonly></td>
-        <td><input name="startTime" value="${product.startTimeString}" readonly></td>
-        <td><input name="endTime" value="${product.endTimeString}" readonly></td>
+        <td><input name="startTimeString" value="${product.startTimeString}" readonly></td>
+        <td><input name="endTimeString" value="${product.endTimeString}" readonly></td>
         <td><input name="productCount" value="${product.productCount}" readonly></td>
         <td><input name="stockCount" value="${product.stockCount}" readonly></td>
         <td><input name="description" value="${product.description}" readonly></td>
-        <td>
-            <input type="radio" name="state" value="2">审核通过</input></br>
-            <input type="radio" name="state" value="3">审核不通过</input>
+        <td width="300">
+            <input type="radio" name="state" value="1">审核通过</input></br>
+            <input type="radio" name="state" value="2">审核不通过</input>
         </td>
         <td>
             <input type="button" value="提交" onclick="submit()">
@@ -72,7 +72,7 @@
 <script type="text/javascript">
     function submit(){
         $.ajax({
-            type:'post',
+            type:'get',
             data:$("#productInfo").serialize()
         });
     }
