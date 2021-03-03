@@ -29,6 +29,9 @@ public class UserService implements IUserDao {
         return iUserDao.queryUserById(id);
     }
 
+    public User queryByAccount(String account){
+        return iUserDao.queryByAccount(account);
+    }
     public List<User> queryUsers(CustomVo customVo){
         return iUserDao.queryUsers(customVo);
     }

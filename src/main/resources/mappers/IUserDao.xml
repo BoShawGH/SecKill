@@ -55,4 +55,8 @@
             <include refid="commonSql"></include>
         </where>
     </select>
+
+    <select id="queryByAccount" parameterType="java.lang.String" resultType="user">
+        select * from t_seckill_user where useraccount=#{value}
+    </select>
 </mapper>
