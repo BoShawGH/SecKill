@@ -34,4 +34,8 @@ public class MerchantService{
     public List<Merchant> queryMerchants(CustomVo customVo){
         return IMerchantDao.queryMerchants(customVo);
     }
+
+    public Merchant queryMerchantByAccount(String account){
+        return IMerchantDao.queryMerchantByAccount(account);
+    }
 }

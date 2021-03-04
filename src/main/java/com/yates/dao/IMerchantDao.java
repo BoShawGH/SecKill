@@ -10,7 +10,7 @@ public interface IMerchantDao {
     Merchant queryMerchantById(int id);
     void updateMerchant(Merchant merchant);
     void deleteMerchantById(int id);
-
+    Merchant queryMerchantByAccount(String account);
     List<Merchant> queryMerchants(CustomVo customVo);
 
 }

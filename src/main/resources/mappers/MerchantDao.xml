@@ -9,6 +9,9 @@
 		select * from t_seckill_merchant where id = #{id}
 	</select>
 
+    <select id="querMerchantByAccount" parameterType="Java.lang.String" resultType="merchant">
+        select * from t_seckill_merchant where account=#{account}
+    </select>
     <insert id="insertMerchant" parameterType="merchant">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()

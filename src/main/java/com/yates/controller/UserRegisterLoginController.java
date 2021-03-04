@@ -2,8 +2,6 @@ package com.yates.controller;
 
 import com.yates.entity.User;
 import com.yates.service.UserService;
-import com.yates.vo.CustomVo;
-import com.yates.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,19 +17,19 @@ public class UserRegisterLoginController {
 
     @RequestMapping(value = "/tosignup")
     public String toSignUp(){
-        return "/sign_up_in/signup";
+        return "user/signup";
     }
     @RequestMapping(value = "/signup")
     public String register(HttpServletRequest request, User user){
         userService.insertUser(user);
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
-        return "/Home/index";
+        return "/userHome/index";
     }
 
     @RequestMapping(value = "tosignin")
     public String toSignIn(){
-        return "/sign_up_in/signin";
+        return "user/signin";
     }
     @RequestMapping(value = "signin")
     public String login(HttpServletRequest request, User user){
@@ -48,15 +46,15 @@ public class UserRegisterLoginController {
         }else{
             HttpSession session =request.getSession();
             session.setAttribute("user", userResult);
-            return "/Home/index";
+            return "/userHome/index";
         }
-        return "/Home/error";
+        return "/userHome/error";
     }
 
     @RequestMapping(value = "exit")
     public String exit(HttpServletRequest request){
         HttpSession session = request.getSession();
         session.removeAttribute("user");
-        return "/Home/index";
+        return "/userHome/index";
     }
 }
