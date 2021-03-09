@@ -9,7 +9,7 @@
 </head>
 
 <body>
-成功：${user.userAccount}
+成功：${merchant.merchantAccount}
 
 <a href="${pageContext.request.contextPath}/merchant_sign/tosignup">注册</a>
 <a href="${pageContext.request.contextPath}/merchant_sign/tosignin">登录</a>

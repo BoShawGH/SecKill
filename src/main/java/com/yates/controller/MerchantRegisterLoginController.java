@@ -27,7 +27,7 @@ public class MerchantRegisterLoginController {
         if(result == null) {
             merchantService.insertMerchant(merchant);
             session.setAttribute("merchant", merchant);
-            return "/Home/index";
+            return "/merchantHome/index";
         }else{
             return "redirect:/merchant_sign/tosignup";
         }

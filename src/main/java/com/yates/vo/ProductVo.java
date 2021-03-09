@@ -22,7 +22,7 @@ public class ProductVo extends Product {
     private LocalDateTime auditDateRangeCeil;   //审核时间查询上限
 
     private LocalDateTime startTimeRangeFloor;  //秒杀开始时间查询下限
-    private LocalDateTime startTimeRangeCeil;     //秒杀开始时间查询上限
+    private LocalDateTime startTimeRangeCeil;   //秒杀开始时间查询上限
 
     private LocalDateTime endTimeRangeFloor;  //秒杀结束时间查询下限
     private LocalDateTime endTimeRangeCeil;     //秒杀结束时间查询上限
@@ -32,6 +32,7 @@ public class ProductVo extends Product {
 
     private int stockCountFloor;            //秒杀商品库存查询下限
     private int stockCountCeil;             //秒杀商品库存查询上限
+
     public BigDecimal getSecPriceRangeFloor() {
         return secPriceRangeFloor;
     }
