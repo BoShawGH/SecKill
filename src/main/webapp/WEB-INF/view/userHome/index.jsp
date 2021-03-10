@@ -16,6 +16,17 @@
 <a href="/sign_up_in/exit">退出登录</a>
 
 <table border="2">
+    <thead>
+    <tr>
+        <th>商品名</th>
+        <th>图片地址</th>
+        <th>原价格</th>
+        <th>秒杀价格</th>
+        <th>开始时间</th>
+        <th>结束时间</th>
+        <th></th>
+    </tr>
+    </thead>
     <c:forEach items="${products}" var="item">
         <tr>
             <td>${item.productTitle}</td>

@@ -54,33 +54,33 @@
                 and originPrice <![CDATA[ <= ]]> "${productVo.originPriceRangeCeil}"
             </if>
 
-            <if test="productVo.applyDateRangeFloor != null and productVo.applyDateRangeFloor != ''">
-                and applyDate <![CDATA[ >= ]]> "${productVo.applyDateRangeFloor}"
+            <if test="productVo.applyDateRangeFloor != null">
+                and applyDate <![CDATA[ >= ]]> STR_TO_DATE(#{productVo.applyDateRangeFloor}, '%Y-%m-%d %H:%i:%S')
             </if>
-            <if test="productVo.applyDateRangeCeil != null and productVo.applyDateRangeCeil != ''">
-                and applyDate <![CDATA[ <= ]]> "${productVo.applyDateRangeCeil}"
+            <if test="productVo.applyDateRangeCeil != null">
+                and applyDate <![CDATA[ <= ]]> STR_TO_DATE(#{productVo.applyDateRangeCeil}, '%Y-%m-%d %H:%i:%S')
             </if>
 
-            <if test="productVo.auditDateRangeFloor != null and productVo.auditDateRangeFloor != ''">
-                and auditDate <![CDATA[ >= ]]> "${productVo.auditDateRangeFloor}"
+            <if test="productVo.auditDateRangeFloor != null">
+                and auditDate <![CDATA[ >= ]]> STR_TO_DATE(#{productVo.auditDateRangeFloor}, '%Y-%m-%d %H:%i:%S')
             </if>
-            <if test="productVo.auditDateRangeCeil != null and productVo.auditDateRangeCeil != ''">
-                and auditDate <![CDATA[ <= ]]> "${productVo.auditDateRangeCeil}"
+            <if test="productVo.auditDateRangeCeil != null">
+                and auditDate <![CDATA[ <= ]]> STR_TO_DATE(#{productVo.auditDateRangeCeil}, '%Y-%m-%d %H:%i:%S')
             </if>
 
             <if test="productVo.startTimeRangeFloor != null">
                 and starttime <![CDATA[ >= ]]> STR_TO_DATE(#{productVo.startTimeRangeFloor}, '%Y-%m-%d %H:%i:%S')
---                 and startTime <![CDATA[ >= ]]> "${productVo.startTimeRangeFloor}"
-            </if>
-            <if test="productVo.startTimeRangeCeil != null and productVo.startTimeRangeCeil != ''">
-                and startTime <![CDATA[ <= ]]> "${productVo.startTimeRangeCeil}"
             </if>
 
-            <if test="productVo.endTimeRangeFloor != null and productVo.endTimeRangeFloor != ''">
-                and endTime <![CDATA[ >= ]]> "${productVo.endTimeRangeFloor}"
+            <if test="productVo.startTimeRangeCeil != null">
+                and startTime <![CDATA[ <= ]]> STR_TO_DATE(#{productVo.startTimeRangeCeil}, '%Y-%m-%d %H:%i:%S')
             </if>
-            <if test="productVo.endTimeRangeCeil != null and productVo.endTimeRangeCeil != ''">
-                and endTime <![CDATA[ <= ]]> "${productVo.endTimeRangeCeil}"
+
+            <if test="productVo.endTimeRangeFloor != null">
+                and endTime <![CDATA[ >= ]]> STR_TO_DATE(#{productVo.endTimeRangeFloor}, '%Y-%m-%d %H:%i:%S')
+            </if>
+            <if test="productVo.endTimeRangeCeil != null">
+                and endTime <![CDATA[ <= ]]> STR_TO_DATE(#{productVo.endTimeRangeCeil}, '%Y-%m-%d %H:%i:%S')
             </if>
 
             <if test="productVo.productCountRangeFloor != null and productVo.productCountRangeFloor != ''">

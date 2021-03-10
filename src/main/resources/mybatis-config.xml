@@ -11,6 +11,7 @@
         <typeAlias type="com.yates.entity.User" alias="user"/>
         <typeAlias type="com.yates.entity.Product" alias="product"/>
         <typeAlias type="com.yates.entity.ProductDetail" alias="detail"/>
+        <typeAlias type="com.yates.entity.Order" alias="order"></typeAlias>
     </typeAliases>
 
 </configuration>
