@@ -9,6 +9,7 @@ public class Order {
     private int userId;
     private int merchantId;
     private BigDecimal payAmount;
+    private int transQuantity;
     private LocalDateTime createTime;
     private LocalDateTime payTime;
     private int payState; // 0:未支付 1:已支付
@@ -22,6 +23,14 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getTransQuantity() {
+        return transQuantity;
+    }
+
+    public void setTransQuantity(int transQuantity) {
+        this.transQuantity = transQuantity;
     }
 
     public int getProductId() {

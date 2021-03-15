@@ -38,7 +38,9 @@
             <a href="${pageContext.request.contextPath}/product/toupdate?id=${item.id}">修改</a>||
             <a href="${pageContext.request.contextPath}/product/delete?id=${item.id}">删除</a>||
             <a href="${pageContext.request.contextPath}/product/querybyid?id=${item.id}">详情</a>||
-            <a href="/product/toupdatestate?id=${item.id}">审核</a>
+            <a href="${pageContext.request.contextPath}/product/toupdatestate?id=${item.id}">审核</a>
+            <a href="${pageContext.request.contextPath}/detail/toinsert?productId=${item.productId}&&merchantId=${item.merchantId}">添加商品详情</a>
+            <a href="${pageContext.request.contextPath}/detail/querybyid?productId=${item.productId}">查看商品详情</a>
         </td>
 
     </tr>

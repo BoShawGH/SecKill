@@ -15,7 +15,7 @@ public class ProductDetailController {
     public ProductDetailService productDetailService;
 
     @RequestMapping(value = "/toinsert")
-    public String toInsert(HttpServletRequest request, int productId, int merchantId){
+    public String toInsert(HttpServletRequest request, Integer productId, Integer merchantId){
         request.setAttribute("productId", productId);
         request.setAttribute("merchantId", merchantId);
         return "/detail/insert";
@@ -24,12 +24,12 @@ public class ProductDetailController {
     @RequestMapping(value = "/insert")
     public String insertDetail(ProductDetail productDetail){
         productDetailService.insertDetail(productDetail);
-        return "/product/list";
+        return "redirect:/product/listproducts";
     }
 
     @RequestMapping(value = "/toupdate")
-    public String toUpdate(HttpServletRequest request, int id){
-        ProductDetail productDetail = productDetailService.queryById(id);
+    public String toUpdate(HttpServletRequest request, int productId){
+        ProductDetail productDetail = productDetailService.queryById(productId);
         request.setAttribute("productDetail", productDetail);
         return "/detail/update";
     }
@@ -41,8 +41,8 @@ public class ProductDetailController {
     }
 
     @RequestMapping(value = "querybyid")
-    public String queryDetailById(HttpServletRequest request, int id){
-        ProductDetail productDetail = productDetailService.queryById(id);
+    public String queryDetailById(HttpServletRequest request, int productId){
+        ProductDetail productDetail = productDetailService.queryById(productId);
         request.setAttribute("productDetail", productDetail);
         return "/detail/view";
     }

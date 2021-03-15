@@ -10,8 +10,8 @@
 <body>
 <form id="detailForm">
     <input name="id" value="${productDetail.id}" type="hidden">
-    产品编号：<input name="productId" value="${productId}" readonly></br>
-    商家编号：<input name="merchantId" value="${merchantId}" readonly></br>
+    产品编号：<input name="productId" value="${productDetail.productId}" readonly></br>
+    商家编号：<input name="merchantId" value="${productDetail.merchantId}" readonly></br>
     商品名称：<input name="productName" value="${productDetail.productName}" readonly></br>
     商品产地：<input name="productPlace" value="${productDetail.productPlace}" readonly></br>
     商品商标：<input name="brandName" value="${productDetail.brandName}" readonly></br>

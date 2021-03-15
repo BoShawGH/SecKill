@@ -1,6 +1,9 @@
 package com.yates.controller;
 
 import com.yates.entity.Product;
+import com.yates.entity.ProductDetail;
+import com.yates.service.OrderService;
+import com.yates.service.ProductDetailService;
 import com.yates.service.ProductService;
 import com.yates.vo.CustomVo;
 import com.yates.vo.ProductVo;
@@ -23,6 +26,13 @@ import java.util.List;
 public class UserHomeController {
     @Autowired
     ProductService productService;
+
+    @Autowired
+    OrderService orderService;
+
+    @Autowired
+    ProductDetailService productDetailService;
+
     DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @RequestMapping(value = "/index")
@@ -36,5 +46,14 @@ public class UserHomeController {
         List<Product> products = productService.listProducts(customVo);
         request.setAttribute("products", products);
         return "/userHome/index";
+    }
+
+    @RequestMapping(value = "/detail")
+    public String viewProductDetail(HttpServletRequest request, int id){
+        Product product = productService.queryProductById(id);
+        ProductDetail productDetail = productDetailService.queryById(id);
+        request.setAttribute("product", product);
+        request.setAttribute("productDetail", productDetail);
+        return "/order/sellDetail";
     }
 }

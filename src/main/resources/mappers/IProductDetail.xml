@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yates.dao.IProductDetailDao">
     <select id="queryById" parameterType="int" resultType="detail">
-        select * from t_seckill_details where id = #{id}
+        select * from t_seckill_details where productid = #{productId}
     </select>
 
     <update id="updateDetail" parameterType="detail">
         update t_seckill_details set productid = #{productId}, merchantid=#{merchantId}, productplace=#{productPlace}, productname=#{productName},
                 brandName=#{brandName}, productweight=#{productWeight}, specification=#{specification}, productdetailpicture=#{productDetailPicture}
-                where id =#{id}
+                where productid =#{productId}
     </update>
 
     <insert id="insertDetail" parameterType="detail">

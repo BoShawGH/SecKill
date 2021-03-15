@@ -7,8 +7,8 @@
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into t_seckill_order(productid, payamount, userid, merchantid, createtime, paystatus, recevingaddress, recevingphone, recevingname, transserial)
+        insert into t_seckill_order(productid, payamount, userid, transquantity, merchantid, createtime, paystatus, recevingaddress, recevingphone, recevingname, transserial)
         value
-        (#{productId}, #{payAmount}, #{userId}, #{merchantId}, #{createTime}, #{payStatus}, #{recevingAddress}, #{recevingPhone}, #{recevingName}, #{transSerial})
+        (#{productId}, #{payAmount}, #{userId}, #{transQuantity}, #{merchantId}, #{createTime}, #{payStatus}, #{recevingAddress}, #{recevingPhone}, #{recevingName}, #{transSerial})
     </insert>
 </mapper>
