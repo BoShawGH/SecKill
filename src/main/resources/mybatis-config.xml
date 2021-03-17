@@ -7,8 +7,8 @@
     <typeAliases>
         <!-- 别名定义 -->
         <typeAlias type="com.yates.entity.Merchant" alias="merchant"/>
-        <typeAlias type="com.yates.vo.CustomVo" alias="commonVo"/>
-        <typeAlias type="com.yates.entity.User" alias="user"/>
+        <typeAlias type="com.yates.vo.CommonVo" alias="commonVo"/>
+        <typeAlias type="com.yates.entity.SecUser" alias="user"/>
         <typeAlias type="com.yates.entity.Product" alias="product"/>
         <typeAlias type="com.yates.entity.ProductDetail" alias="detail"/>
         <typeAlias type="com.yates.entity.Order" alias="order"></typeAlias>

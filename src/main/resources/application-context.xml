@@ -34,7 +34,7 @@
         <property name="mapperLocations">
             <array>
                 <value>classpath:mappers/MerchantDao.xml</value>
-                <value>classpath:mappers/IUserDao.xml</value>
+                <value>classpath:mappers/ISecUserDao.xml</value>
                 <value>classpath:mappers/IProductDao.xml</value>
                 <value>classpath:mappers/IProductDetail.xml</value>
                 <value>classpath:mappers/IOrderDao.xml</value>

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yates.dao.IProductDetailDao">
-    <select id="queryById" parameterType="int" resultType="detail">
+    <select id="queryByProductId" parameterType="java.lang.String" resultType="detail">
         select * from t_seckill_details where productid = #{productId}
     </select>
 
@@ -14,9 +14,6 @@
     </update>
 
     <insert id="insertDetail" parameterType="detail">
-        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
         insert into t_seckill_details(productid, merchantid, productplace, productname, brandname, productweight, specification, productdetailpicture)
             value (#{productId}, #{merchantId}, #{productPlace}, #{productName}, #{brandName}, #{productWeight}, #{specification}, #{productDetailPicture})
     </insert>

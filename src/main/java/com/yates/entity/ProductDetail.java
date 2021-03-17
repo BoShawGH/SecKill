@@ -1,6 +1,6 @@
 package com.yates.entity;
 
-public class Details {
+public class ProductDetail {
     private String productId;
     private String merchantId;
     private String productPlace;
