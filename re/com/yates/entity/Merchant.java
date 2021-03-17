@@ -1,19 +1,25 @@
 package com.yates.entity;
 
+import javax.persistence.Column;
+
+/**
+ * 商家后台 商家实体
+ */
 public class Merchant {
-    private String merchantId;
+    @Column
+    private int id;
     private String merchantName;
-    private String merchantShopname;
     private String merchantAccount;
     private String merchantPassword;
     private String merchantScope;
+    private String merchantShopname;
 
-    public String getMerchantId() {
-        return merchantId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setMerchantId(String merchantId) {
-        this.merchantId = merchantId;
+    public int getId() {
+        return id;
     }
 
     public String getMerchantName() {
@@ -22,14 +28,6 @@ public class Merchant {
 
     public void setMerchantName(String merchantName) {
         this.merchantName = merchantName;
-    }
-
-    public String getMerchantShopname() {
-        return merchantShopname;
-    }
-
-    public void setMerchantShopname(String merchantShopname) {
-        this.merchantShopname = merchantShopname;
     }
 
     public String getMerchantAccount() {
@@ -55,4 +53,21 @@ public class Merchant {
     public void setMerchantScope(String merchantScope) {
         this.merchantScope = merchantScope;
     }
+
+    public String getMerchantShopname() {
+        return merchantShopname;
+    }
+
+    public void setMerchantShopname(String merchantShopname) {
+        this.merchantShopname = merchantShopname;
+    }
+
+    @Override
+    public String toString() {
+        return "Merchant [id=" + id + ", merchantAccount=" + merchantAccount + ", merchantName=" + merchantName
+                + ", merchantPassword=" + merchantPassword + ", merchantScope=" + merchantScope + ", merchantShopname="
+                + merchantShopname + "]";
+    }
+
+
 }

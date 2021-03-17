@@ -4,57 +4,49 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Order {
-    private int id;
-    private int productId;
-    private int userId;
-    private int merchantId;
+    private String productId;
+    private String merchantId;
+    private String transSerial;
+    private String userId;
     private BigDecimal payAmount;
     private int transQuantity;
     private LocalDateTime createTime;
     private LocalDateTime payTime;
-    private int payState; // 0:未支付 1:已支付
+    private String payState;
     private String receivingAddress;
-    private String receivingPhone;
-    private String transSerial;
+    private String recevingPhone;
+    private String recevingName;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getTransQuantity() {
-        return transQuantity;
-    }
-
-    public void setTransQuantity(int transQuantity) {
-        this.transQuantity = transQuantity;
-    }
-
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getMerchantId() {
+    public String getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(int merchantId) {
+    public void setMerchantId(String merchantId) {
         this.merchantId = merchantId;
+    }
+
+    public String getTransSerial() {
+        return transSerial;
+    }
+
+    public void setTransSerial(String transSerial) {
+        this.transSerial = transSerial;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public BigDecimal getPayAmount() {
@@ -63,6 +55,14 @@ public class Order {
 
     public void setPayAmount(BigDecimal payAmount) {
         this.payAmount = payAmount;
+    }
+
+    public int getTransQuantity() {
+        return transQuantity;
+    }
+
+    public void setTransQuantity(int transQuantity) {
+        this.transQuantity = transQuantity;
     }
 
     public LocalDateTime getCreateTime() {
@@ -81,11 +81,11 @@ public class Order {
         this.payTime = payTime;
     }
 
-    public int getPayState() {
+    public String getPayState() {
         return payState;
     }
 
-    public void setPayState(int payState) {
+    public void setPayState(String payState) {
         this.payState = payState;
     }
 
@@ -97,19 +97,19 @@ public class Order {
         this.receivingAddress = receivingAddress;
     }
 
-    public String getReceivingPhone() {
-        return receivingPhone;
+    public String getRecevingPhone() {
+        return recevingPhone;
     }
 
-    public void setReceivingPhone(String receivingPhone) {
-        this.receivingPhone = receivingPhone;
+    public void setRecevingPhone(String recevingPhone) {
+        this.recevingPhone = recevingPhone;
     }
 
-    public String getTransSerial() {
-        return transSerial;
+    public String getRecevingName() {
+        return recevingName;
     }
 
-    public void setTransSerial(String transSerial) {
-        this.transSerial = transSerial;
+    public void setRecevingName(String recevingName) {
+        this.recevingName = recevingName;
     }
 }
