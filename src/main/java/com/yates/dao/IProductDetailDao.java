@@ -12,5 +12,4 @@ public interface IProductDetailDao {
     void deleteByProductId(String productId);
     void updateDetail(String productId);
     ProductDetail queryByProductId(String productId);
-    List<ProductDetail> queryAll(CommonVo commonVo);
 }

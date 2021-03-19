@@ -9,7 +9,7 @@
 </head>
 <body>
 <form id="userInfo" action="${pageContext.request.contextPath}/user/update">
-    <input name="id" value="${user.id}" type="hidden"/>
+    <input name="id" value="${user.userId}" type="hidden"/>
     用户姓名:<input name="userName" value="${user.userName}"></br>
     用户账号:<input name="userAccount" value="${user.userAccount}"></br>
     用户密码:<input name="userPassword" value="${user.userPassword}"></br>

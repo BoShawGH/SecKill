@@ -10,7 +10,7 @@
     </insert>
 
     <delete id="deleteById" parameterType="java.lang.String">
-        delete from t_seckill_product where productid = #{productId}
+        delete from t_seckill_product where productid = #{value}
     </delete>
 
     <update id="updateProduct" parameterType="product">

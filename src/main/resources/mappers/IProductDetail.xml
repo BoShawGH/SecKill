@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yates.dao.IProductDetailDao">
     <select id="queryByProductId" parameterType="java.lang.String" resultType="detail">
-        select * from t_seckill_details where productid = #{productId}
+        select * from t_seckill_details where productid = #{value}
     </select>
 
     <update id="updateDetail" parameterType="detail">
@@ -12,6 +12,10 @@
                 brandName=#{brandName}, productweight=#{productWeight}, specification=#{specification}, productdetailpicture=#{productDetailPicture}
                 where productid =#{productId}
     </update>
+
+    <delete id="deleteByProductId" parameterType="java.lang.String">
+        delete from t_seckill_details where productid = #{value}
+    </delete>
 
     <insert id="insertDetail" parameterType="detail">
         insert into t_seckill_details(productid, merchantid, productplace, productname, brandname, productweight, specification, productdetailpicture)

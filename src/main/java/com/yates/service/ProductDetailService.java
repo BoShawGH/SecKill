@@ -26,7 +26,4 @@ public class ProductDetailService {
     public ProductDetail queryByProductId(String productId){
         return iProductDetailDao.queryByProductId(productId);
     }
-    public List<ProductDetail> queryAll(CommonVo commonVo){
-        return iProductDetailDao.queryAll(commonVo);
-    }
 }
