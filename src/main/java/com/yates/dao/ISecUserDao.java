@@ -5,7 +5,7 @@ import com.yates.vo.CommonVo;
 
 import java.util.List;
 
-public interface ISecUser {
+public interface ISecUserDao {
     void insertUser(SecUser secUser);
     void updateUser(SecUser secUser);
     void deleteUserById(String userId);

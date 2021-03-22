@@ -48,7 +48,7 @@ public class SecUserController {
     }
 
     @RequestMapping(value="update")
-    public String updateUser(SecUser secUser){
+    public String updateUser(HttpServletRequest request, SecUser secUser){
         secUserService.updateUser(secUser);
         return "redirect:/user/listall";
     }

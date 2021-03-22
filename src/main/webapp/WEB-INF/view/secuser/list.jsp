@@ -29,9 +29,9 @@
         <td>${item.userAge}</td>
         <td>${item.userAddress}</td>
         <td>${item.userEmail}</td>
-        <td><a href="${pageContext.request.contextPath}/user/querybyid?id=${item.id}">详情</a>|
-            <a href="${pageContext.request.contextPath}/user/toupdate?id=${item.id}">编辑</a>|
-            <a href="${pageContext.request.contextPath}/user/delete?id=${item.id}">删除</a>
+        <td><a href="${pageContext.request.contextPath}/user/querybyid?userId=${item.userId}">详情</a>|
+            <a href="${pageContext.request.contextPath}/user/toupdate?userId=${item.userId}">编辑</a>|
+            <a href="${pageContext.request.contextPath}/user/delete?userId=${item.userId}">删除</a>
         </td>
     </tr>
     </c:forEach>

@@ -1,6 +1,6 @@
 package com.yates.service;
 
-import com.yates.dao.ISecUser;
+import com.yates.dao.ISecUserDao;
 import com.yates.entity.SecUser;
 import com.yates.vo.CommonVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +11,14 @@ import java.util.List;
 @Service
 public class SecUserService {
     @Autowired
-    public ISecUser iSecUser;
+    public ISecUserDao iSecUserDao;
 
     /**
      * 增添用户信息
      * @param secUser
      */
     public void insertUser(SecUser secUser){
-        iSecUser.insertUser(secUser);
+        iSecUserDao.insertUser(secUser);
     }
 
     /**
@@ -26,7 +26,7 @@ public class SecUserService {
      * @param userId
      */
     public void deleteUserById(String userId){
-        iSecUser.deleteUserById(userId);
+        iSecUserDao.deleteUserById(userId);
     }
 
     /**
@@ -34,7 +34,7 @@ public class SecUserService {
      * @param secUser
      */
     public void updateUser(SecUser secUser){
-        iSecUser.updateUser(secUser);
+        iSecUserDao.updateUser(secUser);
     }
 
     /**
@@ -43,11 +43,11 @@ public class SecUserService {
      * @return
      */
     public SecUser queryUserById(String userId){
-        return iSecUser.queryUserById(userId);
+        return iSecUserDao.queryUserById(userId);
     }
 
     public SecUser queryUserByAccount(String userAccount){
-        return iSecUser.queryUserByAccount(userAccount);
+        return iSecUserDao.queryUserByAccount(userAccount);
     }
 
     /**
@@ -56,7 +56,7 @@ public class SecUserService {
      * @return
      */
     public List<SecUser> queryAll(CommonVo commonVo){
-        return iSecUser.queryAll(commonVo);
+        return iSecUserDao.queryAll(commonVo);
     }
 
 }

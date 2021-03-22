@@ -9,6 +9,7 @@
 </head>
 <body>
 <form id="userInfo" action="${pageContext.request.contextPath}/user/insert">
+    用户编号:<input name="userId"></br>
     用户姓名:<input name="userName"></br>
     用户账号:<input name="userAccount"></br>
     用户密码:<input name="userPassword"></br>
