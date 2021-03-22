@@ -9,6 +9,7 @@
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/merchant/insert" id="merchantForm">
+    商家编号:<input name="merchantId"></br>
     商家的姓名:<input name="merchantName"></br>
     商家的店铺名称:<input name="merchantShopname"></br>
     商家账号:<input name="merchantAccount"></br>

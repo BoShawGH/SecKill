@@ -9,7 +9,7 @@
 </head>
 <body>
 <form action="${pageContext.request.contextPath}/merchant/update" id="merchantInfo">
-    <input name="id" value="${merchant.id}" type="hidden"/>
+    <input name="merchantId" value="${merchant.merchantId}" type="hidden"/>
     商家的姓名:<input name="merchantName" value="${merchant.merchantName}" readonly></br>
     商家的店铺名称:<input name="merchantShopname" value="${merchant.merchantShopname}" readonly></br>
     商家账号:<input name="merchantAccount" value="${merchant.merchantAccount}" readonly></br>
