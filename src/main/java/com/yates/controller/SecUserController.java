@@ -17,12 +17,12 @@ public class SecUserController {
     @Autowired
     public SecUserService secUserService;
 
-    @RequestMapping(value="toinsert")
+    @RequestMapping(value="/toinsert")
     public String toInsert(){
         return "/secuser/insert";
     }
 
-    @RequestMapping(value="insert")
+    @RequestMapping(value="/insert")
     public String insertUser(SecUser user) throws IdNotNullOrEmptyException {
         if(user.getUserId() == null || user.getUserId().equals(""))
             throw new IdNotNullOrEmptyException();
@@ -30,7 +30,7 @@ public class SecUserController {
         return "redirect:/user/listall";
     }
 
-    @RequestMapping(value="delete")
+    @RequestMapping(value="/delete")
     public String deleteUserById(String userId)throws IdNotNullOrEmptyException{
         if(userId == null || userId.equals(""))
             throw new IdNotNullOrEmptyException();
@@ -38,7 +38,7 @@ public class SecUserController {
         return "redirect:/user/listall";
     }
 
-    @RequestMapping(value="toupdate")
+    @RequestMapping(value="/toupdate")
     public String toupdate(HttpServletRequest request, String userId) throws IdNotNullOrEmptyException{
         if(userId == null || userId.equals(""))
             throw new IdNotNullOrEmptyException();
@@ -47,13 +47,13 @@ public class SecUserController {
         return "/secuser/update";
     }
 
-    @RequestMapping(value="update")
+    @RequestMapping(value="/update")
     public String updateUser(HttpServletRequest request, SecUser secUser){
         secUserService.updateUser(secUser);
         return "redirect:/user/listall";
     }
 
-    @RequestMapping(value="querybyid")
+    @RequestMapping(value="/querybyid")
     public String queryById(HttpServletRequest request, String userId) throws IdNotNullOrEmptyException{
         if(userId == null || userId.equals(""))
             throw new IdNotNullOrEmptyException();
@@ -62,14 +62,14 @@ public class SecUserController {
         return "/secuser/query";
     }
 
-    @RequestMapping(value="querybyaccount")
+    @RequestMapping(value="/querybyaccount")
     public String queryByAccount(HttpServletRequest request, String userAccount){
         SecUser secUser = secUserService.queryUserByAccount(userAccount);
         request.setAttribute("user", secUser);
         return "/secuser/query";
     }
 
-    @RequestMapping(value="listall")
+    @RequestMapping(value="/listall")
     public String queryAll(HttpServletRequest request, CommonVo commonVo){
         List<SecUser> users =  secUserService.queryAll(commonVo);
         request.setAttribute("users", users);

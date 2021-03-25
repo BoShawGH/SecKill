@@ -7,7 +7,7 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
 <body>
-<div style=" text-align: center;"><a href="${pageContext.request.contextPath}/product/toapply">申请秒杀商品</a></div>
+<div style=" text-align: center;"><a href="${pageContext.request.contextPath}/product/toinsert">申请秒杀商品</a></div>
 <table border="2">
     <thead>
         <tr>
@@ -35,12 +35,12 @@
         <td>${item.stockCount}</td>
         <td>${item.stateString}</td>
         <td>
-            <a href="${pageContext.request.contextPath}/product/toupdate?id=${item.id}">修改</a>||
-            <a href="${pageContext.request.contextPath}/product/delete?id=${item.id}">删除</a>||
-            <a href="${pageContext.request.contextPath}/product/querybyid?id=${item.id}">详情</a>||
-            <a href="${pageContext.request.contextPath}/product/toupdatestate?id=${item.id}">审核</a>
-            <a href="${pageContext.request.contextPath}/detail/toinsert?productId=${item.productId}&&merchantId=${item.merchantId}">添加商品详情</a>
-            <a href="${pageContext.request.contextPath}/detail/querybyid?productId=${item.productId}">查看商品详情</a>
+            <a href="${pageContext.request.contextPath}/product/toupdate?productId=${item.productId}">修改</a>||
+            <a href="${pageContext.request.contextPath}/product/delete?productId=${item.productId}">删除</a>||
+            <a href="${pageContext.request.contextPath}/product/querybyid?productId=${item.productId}">详情</a>||
+            <a href="${pageContext.request.contextPath}/product/toaudit?productId=${item.productId}">审核</a>||
+            <a href="${pageContext.request.contextPath}/detail/toinsert?productId=${item.productId}&&merchantId=${item.merchantId}">添加商品详情</a>||
+            <a href="${pageContext.request.contextPath}/detail/querybyid?productId=${item.productId}">查看商品详情</a>||
         </td>
 
     </tr>

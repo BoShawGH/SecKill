@@ -20,8 +20,10 @@
         stockcount=#{stockCount}, description=#{description} where productid = #{productId}
     </update>
 
-    <update id="updateProductState" parameterType="commonVo">
-        update t_seckill_product set auditstate=#{productVo.auditState} where id = #{productVo.id}
+    <update id="auditProduct" parameterType="commonVo">
+        update t_seckill_product set auditstate=#{productVo.auditState},
+                                     auditdate=#{productVo.auditDate}
+                                 where productId = #{productVo.productId}
        </update>
 
     <select id="queryProductById" parameterType="java.lang.String" resultType="product">

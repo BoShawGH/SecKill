@@ -9,6 +9,7 @@ public interface IProductDao {
     void insertProduct(Product product);
     void deleteById(String productId);
     void updateProduct(Product product);
+    void auditProduct(CommonVo commonVo);
     Product queryProductById(String productId);
     List<Product> queryAll(CommonVo commonVo);
 }

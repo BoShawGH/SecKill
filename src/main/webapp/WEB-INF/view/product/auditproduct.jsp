@@ -8,8 +8,7 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
 <body>
-<form id="productInfo" action="${pageContext.request.contextPath}/product/updatestate">
-    <input name="id" value="${product.id}" type="hidden"/>
+<form id="productInfo" action="${pageContext.request.contextPath}/product/audit">
     <input name="auditDateString" value="${product.auditDateString}" type="hidden">
     <table>
     <thead>
