@@ -31,7 +31,7 @@ public class ProductController {
     @RequestMapping(value = "/toinsert")
     public String toInsert(){
 //        Product product = new Product();
-        return "/product/insert";
+        return "/product/insert.jsp";
     }
 
     @RequestMapping(value = "/insert")
@@ -72,7 +72,7 @@ public class ProductController {
         String st = product.getStartTimeString();
         String et = product.getEndTimeString();
         request.setAttribute("product", product);
-        return "/product/update";
+        return "/product/update.jsp";
     }
 
     @RequestMapping(value = "/update")
@@ -104,7 +104,7 @@ public class ProductController {
         if(product == null)
             throw new InstanceNotFoundException("商品不存在");
         request.setAttribute("product", product);
-        return "/product/auditproduct";
+        return "/product/auditproduct.jsp";
     }
 
     @RequestMapping(value="audit")
@@ -121,13 +121,13 @@ public class ProductController {
             throw new IdNotNullOrEmptyException("商品好不存在或者为空");
         Product product = productService.queryProductById(productId);
         request.setAttribute("product", product);
-        return "/product/view";
+        return "/product/view.jsp";
     }
 
     @RequestMapping(value = "/listall")
     public String queryAll(HttpServletRequest request, CommonVo commonVo){
         List<Product> products = productService.queryAll(commonVo);
         request.setAttribute("products", products);
-        return "/product/list";
+        return "/product/list.jsp";
     }
 }

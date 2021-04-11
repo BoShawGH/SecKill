@@ -1,5 +1,6 @@
 package com.yates.controller;
 
+import com.yates.entity.DataResult;
 import com.yates.entity.SecUser;
 import com.yates.exception.IdNotNullOrEmptyException;
 import com.yates.service.SecUserService;
@@ -7,8 +8,11 @@ import com.yates.vo.CommonVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.crypto.Data;
 import java.util.List;
 
 @Controller
@@ -19,15 +23,31 @@ public class SecUserController {
 
     @RequestMapping(value="/toinsert")
     public String toInsert(){
-        return "/secuser/insert";
+        return "/secuser/insert.jsp";
     }
 
     @RequestMapping(value="/insert")
-    public String insertUser(SecUser user) throws IdNotNullOrEmptyException {
+    public @ResponseBody DataResult insertUser(SecUser user) throws IdNotNullOrEmptyException {
         if(user.getUserId() == null || user.getUserId().equals(""))
             throw new IdNotNullOrEmptyException();
-        else secUserService.insertUser(user);
-        return "redirect:/user/listall";
+        DataResult dataResult = new DataResult();
+        int status = secUserService.checkUser(user.getUserId());
+        if(status == 0){
+            dataResult.setStatusCode(0);
+            dataResult.setMessage("Id重复");
+            dataResult.setData(user);
+            return dataResult;
+        }
+        try {
+            secUserService.insertUser(user);
+            dataResult.setStatusCode(1);
+            dataResult.setMessage("插入成功");
+        }catch (Exception ex){
+            dataResult.setStatusCode(0);
+            dataResult.setMessage("数据插入失败");
+            dataResult.setData(user);
+        }
+        return dataResult;
     }
 
     @RequestMapping(value="/delete")
@@ -73,6 +93,6 @@ public class SecUserController {
     public String queryAll(HttpServletRequest request, CommonVo commonVo){
         List<SecUser> users =  secUserService.queryAll(commonVo);
         request.setAttribute("users", users);
-        return "/secuser/list";
+        return "/secuser/list.jsp";
     }
 }

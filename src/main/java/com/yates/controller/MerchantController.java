@@ -20,7 +20,7 @@ public class MerchantController{
 
     @RequestMapping(value="/toinsert")
     public String toInsert(){
-        return "/merchant/insert";
+        return "/merchant/insert.jsp";
     }
 
     @RequestMapping(value="/insert")
@@ -75,6 +75,6 @@ public class MerchantController{
     public String queryAll(HttpServletRequest request, CommonVo commonVo){
         List<Merchant> merchants = merchantService.queryAll(commonVo);
         request.setAttribute("merchants", merchants);
-        return "/merchant/list";
+        return "/merchant/list.jsp";
     }
 }
