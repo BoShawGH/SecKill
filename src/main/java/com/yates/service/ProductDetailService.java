@@ -14,14 +14,14 @@ public class ProductDetailService {
     @Autowired
     public IProductDetailDao iProductDetailDao;
 
-    public  void insertProductDetail(ProductDetail productDetail){
-        iProductDetailDao.insertProductDetail(productDetail);
+    public  void insertDetail(ProductDetail productDetail){
+        iProductDetailDao.insertDetail(productDetail);
     }
     public void deleteByProductId(String productId){
         iProductDetailDao.deleteByProductId(productId);
     }
-    public void updateDetail(String productId){
-        iProductDetailDao.updateDetail(productId);
+    public void updateDetail(ProductDetail detail){
+        iProductDetailDao.updateDetail(detail);
     }
     public ProductDetail queryByProductId(String productId){
         return iProductDetailDao.queryByProductId(productId);

@@ -8,7 +8,7 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
 <body>
-<form id="userInfo" action="${pageContext.request.contextPath}/user/insert">
+<form id="userInfo">
     用户编号:<input name="userId"></br>
     用户姓名:<input name="userName"></br>
     用户账号:<input name="userAccount"></br>
@@ -17,18 +17,25 @@
     用户年龄:<input name="userAge"></br>
     用户地址:<input name="userAddress"></br>
     用户邮箱:<input name="userEmail"></br>
-    <input type="button" value="提交" onclick="submit()">
+    <input type="button" value="提交" id="submit">
 </form>
 </body>
 <script type="text/javascript">
-    function submit(){
-        $.ajax({
-            data:$("#userInfo").serialize(),
-            type:'post',
-            success:function(){
-                console.log(data);
-            }
-        });
-    }
+    $(function(){
+        $("#submit").click(function (){
+            var data = $("#userInfo").serialize();
+            console.log(data);
+            $.ajax({
+                type:'post',
+                dataType:'json',
+                async:'false',
+                url:'/user/insert',
+                data:data,
+                success:function (result){
+                    alert(result.statuscode);
+                }
+            })
+        })
+    })
 </script>
 </html>

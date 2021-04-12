@@ -11,9 +11,9 @@
 
 <body>
 成功：${user.userAccount}
-<a href="${pageContext.request.contextPath}/sign_up_in/tosignup">注册</a>
-<a href="${pageContext.request.contextPath}/sign_up_in/tosignin">登录</a>
-<a href="/sign_up_in/exit">退出登录</a>
+<a href="${pageContext.request.contextPath}/sign/usignup">注册</a>
+<a href="${pageContext.request.contextPath}/sign/usignin">登录</a>
+<a href="${pageContext.request.contextPath}/sign/usignoff">退出登录</a>
 
 <table border="2">
     <thead>
@@ -35,7 +35,7 @@
             <td>${item.secPrice}</td>
             <td>${item.startTime}</td>
             <td>${item.endTime}</td>
-            <td><a href="${pageContext.request.contextPath}/userhome/detail?id=${item.id}">查看</a> </td>
+            <td><a href="${pageContext.request.contextPath}/detail/query?productId=${item.productId}">查看</a> </td>
 
         </tr>
     </c:forEach>

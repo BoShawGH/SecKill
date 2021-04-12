@@ -11,9 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="">
-        <input type="text" name="">
-        <table border="1">
+    <form action="${pageContext.request.contextPath}/order/insert">
+        购买数量：<input type="text" name="num">
+        <input type="hiddent" id="productId" name="productId" value="${product.productId}">
+        <table border="1" id="info">
             <tr>
                 <th>商品名</th>
                 <th>商品图片</th>
@@ -38,7 +39,7 @@
             </tr>
         </table>
 
-        <table border="1">
+        <table border="1" id="detail">
             <tr>
                 <th>商品产地</th>
                 <th>商品名称</th>
@@ -56,6 +57,18 @@
                 <td>${productDetail.productDetailPicture}</td>
             </tr>
         </table>
+        <input type="button" value="立即抢购" onclick="seckill()">
     </form>
 </body>
+<script type="text/javascript">
+    function seckill(){
+        $.ajax({
+            data:{'productId': $("#productId").serialize(),
+                  'info':$("#info").serialize(),
+                  'detail':$("#detail").serialize()
+            },
+            type:post
+        });
+    }
+</script>
 </html>

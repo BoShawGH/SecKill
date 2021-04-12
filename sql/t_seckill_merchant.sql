@@ -7,7 +7,7 @@
 
 create table t_seckill_merchant
 (
- merchantid              char(6) not null AUTO_INCREMENT                  comment '商家id',
+ merchantid              char(6) not null default ''                      comment '商家id',
  merchantname            varchar(20) not null default ''                  comment '商家姓名',
  merchantshopname        varchar(40) not null default ''                  comment '商家店铺名',
  merchantaccount         varchar(50) not null default ''                  comment '商家账号',

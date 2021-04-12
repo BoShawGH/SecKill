@@ -8,7 +8,8 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
 <body>
-<form id="userInfo" action="${pageContext.request.contextPath}/sign_up_in/signup">
+<form id="userInfo" action="${pageContext.request.contextPath}/sign/signup">
+    用户编号:<input name="userId"></br>
     用户姓名:<input name="userName"></br>
     用户账号:<input name="userAccount"></br>
     用户密码:<input name="userPassword"></br>

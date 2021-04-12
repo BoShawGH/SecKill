@@ -1,11 +1,13 @@
 package com.yates.service;
 
 import com.yates.dao.ISecUserDao;
+import com.yates.entity.DataResult;
 import com.yates.entity.SecUser;
 import com.yates.vo.CommonVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLDataException;
 import java.util.List;
 
 @Service
@@ -13,6 +15,18 @@ public class SecUserService {
     @Autowired
     public ISecUserDao iSecUserDao;
 
+
+    public int checkUser(String userId){
+        try {
+            SecUser user = iSecUserDao.queryUserById(userId);
+            if(user != null)
+                return 1;
+            else
+                return 0;
+        }catch (Exception ex){
+            return 0;
+        }
+    }
     /**
      * 增添用户信息
      * @param secUser

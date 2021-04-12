@@ -9,9 +9,9 @@
 CREATE TABLE t_seckill_order
 (
   productid                char(10) NOT NULL DEFAULT '0'                       COMMENT '商品id',
-  merchantid               char(6) NOT NULL DEFAULT 0                          COMMENT '商家id',
+  merchantid               char(6) NOT NULL DEFAULT ''                         COMMENT '商家id',
   transserial              varchar(20) NOT NULL DEFAULT ''                     COMMENT '交易流水号',
-  userid                   char(10) NOT NULL DEFAULT 0                         COMMENT '用户id',
+  userid                   char(10) NOT NULL DEFAULT ''                        COMMENT '用户id',
   payamount                DECIMAL(10,2) NOT NULL DEFAULT 0                    COMMENT '支付金额',
   transquantity            int unsigned NOT NULL DEFAULT 0                     COMMENT '购买数量',
   createtime               datetime NOT NULL DEFAULT '1900-01-01 00:00:00'     COMMENT '创建日期',

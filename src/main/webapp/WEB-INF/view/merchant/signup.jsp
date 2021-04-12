@@ -9,7 +9,8 @@
 </head>
 <body>
 
-<form id="merchantInfo" action="${pageContext.request.contextPath}/merchant_sign/signup">
+<form id="merchantInfo" action="${pageContext.request.contextPath}/sign/musignup">
+    商家编号:<input name="merchantId"></br>
     商家的姓名:<input name="merchantName"></br>
     商家的店铺名称:<input name="merchantShopname"></br>
     商家账号:<input name="merchantAccount"></br>

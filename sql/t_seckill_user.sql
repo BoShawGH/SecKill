@@ -7,7 +7,7 @@
 
 create table t_seckill_user
 (
- userid                  char(10) not null default ''                     comment '用户id'
+ userid                  char(10) not null default ''                     comment '用户id',
  username                varchar(20) not null default ''                  comment '用户名',
  useraccount             varchar(20) not null default ''                  comment '用户账号',
  userpassword            varchar(50) not null default ''                  comment '用户密码',

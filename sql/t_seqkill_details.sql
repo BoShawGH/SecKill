@@ -7,8 +7,8 @@
 
 create table t_seckill_details
 (
- productid               char(10) not null default 0                   comment '产品id',
- merchantid              char(6) not null default 0                    comment '商家id',
+ productid               char(10) not null default ''                  comment '产品id',
+ merchantid              char(6) not null default  ''                  comment '商家id',
  productplace            varchar(50) not null default ''               comment '产地',
  productname             varchar(50) not null default ''               comment '商品名称',
  brandname               varchar(20) not null default ''               comment '品牌',

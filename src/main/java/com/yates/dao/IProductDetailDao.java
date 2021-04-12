@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface IProductDetailDao {
 
-    void insertProductDetail(ProductDetail productDetail);
+    void insertDetail(ProductDetail productDetail);
     void deleteByProductId(String productId);
-    void updateDetail(String productId);
+    void updateDetail(ProductDetail detail);
     ProductDetail queryByProductId(String productId);
 }
