@@ -35,7 +35,7 @@
             <td>${item.secPrice}</td>
             <td>${item.startTime}</td>
             <td>${item.endTime}</td>
-            <td><a href="${pageContext.request.contextPath}/detail/query?productId=${item.productId}">查看</a> </td>
+            <td><a href="${pageContext.request.contextPath}/order/detail?productId=${item.productId}">查看</a> </td>
 
         </tr>
     </c:forEach>

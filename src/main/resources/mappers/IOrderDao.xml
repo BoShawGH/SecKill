@@ -7,8 +7,8 @@
 --         insert into t_seckill_order(productid, payamount, userid, transquantity, merchantid, createtime, paystatus, recevingaddress, recevingphone, recevingname, transserial)
 --         value
 --         (#{productId}, #{payAmount}, #{userId}, #{transQuantity}, #{merchantId}, #{createTime}, #{payStatus}, #{recevingAddress}, #{recevingPhone}, #{recevingName}, #{transSerial})
-        insert into t_seckill_order(transserial, productid, merchantid, productid, payamount, transquantity, createtime, paytime, paystate, receivingaddress, receivingphone, recivingname)
+        insert into t_seckill_order(transserial, productid, merchantid, productid, payamount, transquantity, createtime, paytime, paystate, receivingaddress, receivingphone, receivingname)
         value
-        (#{transserial}, #{productId}, #{merchantId}, #{productId}, #{payAmount}, #{transQuantity}, #{createTime}, #{payTime}, #{payState}, #{receivingAddress}, #{receivingPhone}, #{recivingName})
+        (#{transSerial}, #{productId}, #{merchantId}, #{productId}, #{payAmount}, #{transQuantity}, #{createTime}, #{payTime}, #{payState}, #{receivingAddress}, #{receivingPhone}, #{receivingName})
     </insert>
 </mapper>

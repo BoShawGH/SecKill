@@ -6,10 +6,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.UnsupportedTemporalTypeException;
 
-public class DateConverter implements Converter<String, LocalDateTime> {
-    public DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    @Override
-    public LocalDateTime convert(String s) {
+public class DateConverter{
+    public static LocalDateTime convert(String s, String formatter) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(formatter);
         try{
             return LocalDateTime.parse(s, dateTimeFormatter);
         }catch(UnsupportedTemporalTypeException ex){
@@ -18,7 +17,8 @@ public class DateConverter implements Converter<String, LocalDateTime> {
         return null;
     }
 
-    public String date2String(LocalDateTime localDateTime){
+    public static String date2String(LocalDateTime localDateTime, String formatter){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(formatter);
         try{
             return localDateTime.format(dateTimeFormatter);
         }catch(Exception ex){

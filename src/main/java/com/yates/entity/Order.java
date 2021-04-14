@@ -14,8 +14,8 @@ public class Order {
     private LocalDateTime payTime;
     private String payState;
     private String receivingAddress;
-    private String recevingPhone;
-    private String recevingName;
+    private String receivingPhone;
+    private String receivingName;
 
     public String getProductId() {
         return productId;
@@ -97,19 +97,19 @@ public class Order {
         this.receivingAddress = receivingAddress;
     }
 
-    public String getRecevingPhone() {
-        return recevingPhone;
+    public String getReceivingPhone() {
+        return receivingPhone;
     }
 
-    public void setRecevingPhone(String recevingPhone) {
-        this.recevingPhone = recevingPhone;
+    public void setReceivingPhone(String recevingPhone) {
+        this.receivingPhone = recevingPhone;
     }
 
-    public String getRecevingName() {
-        return recevingName;
+    public String getReceivingName() {
+        return receivingName;
     }
 
-    public void setRecevingName(String recevingName) {
-        this.recevingName = recevingName;
+    public void setReceivingName(String recevingName) {
+        this.receivingName = recevingName;
     }
 }

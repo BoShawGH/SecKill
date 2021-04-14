@@ -9,12 +9,13 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/order/insert">
-        购买数量：<input type="text" name="num">
-        <input type="hiddent" id="productId" name="productId" value="${product.productId}">
-        <table border="1" id="info">
+    <form action="${pageContext.request.contextPath}/order/insert" id="info">
+        购买数量：<input type="text" name="num" value="1">
+        <input type="hidden" id="productId" name="productId" value="${product.productId}">
+        <table border="1">
             <tr>
                 <th>商品名</th>
                 <th>商品图片</th>
@@ -39,7 +40,7 @@
             </tr>
         </table>
 
-        <table border="1" id="detail">
+        <table border="1">
             <tr>
                 <th>商品产地</th>
                 <th>商品名称</th>
@@ -57,17 +58,18 @@
                 <td>${productDetail.productDetailPicture}</td>
             </tr>
         </table>
-        <input type="button" value="立即抢购" onclick="seckill()">
+        <input type="button" value="立即抢购" onclick="submit()">
     </form>
 </body>
 <script type="text/javascript">
-    function seckill(){
+    function submit(){
         $.ajax({
-            data:{'productId': $("#productId").serialize(),
-                  'info':$("#info").serialize(),
-                  'detail':$("#detail").serialize()
-            },
-            type:post
+            // data:{'productId': $("#productId").serialize(),
+            //       'info':$("#info").serialize(),
+            //       'detail':$("#detail").serialize()
+            // },
+            type:'post',
+            data:$("#info").serialize()
         });
     }
 </script>

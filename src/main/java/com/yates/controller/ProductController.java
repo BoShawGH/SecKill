@@ -26,14 +26,12 @@ public class ProductController {
     @Autowired
     public MerchantService merchantService;
 
-    public DateConverter dateConverter = new DateConverter();
-
     @RequestMapping(value = "/toinsert")
     public String toInsert(){
 //        Product product = new Product();
         return "/product/insert.jsp";
     }
-
+    public String formmater = "yyyy-MM-dd HH:mm:ss";
     @RequestMapping(value = "/insert")
     public String insertProduct(Product product) throws IdNotNullOrEmptyException, InstanceNotFoundException {
         if(product.getProductId() == null || product.getProductId().equals("")){
@@ -48,8 +46,8 @@ public class ProductController {
         }
         LocalDateTime applyDate = LocalDateTime.now();
         product.setApplyDate(applyDate);
-        product.setStartTime(dateConverter.convert(product.getStartTimeString()));
-        product.setEndTime(dateConverter.convert(product.getEndTimeString()));
+        product.setStartTime(DateConverter.convert(product.getStartTimeString(), this.formmater));
+        product.setEndTime(DateConverter.convert(product.getEndTimeString(),this.formmater));
         productService.insertProduct(product);
         return "redirect:/product/listall";
     }
@@ -88,10 +86,10 @@ public class ProductController {
                 throw new InstanceNotFoundException("商家不存在");
         }
 
-        product.setApplyDate(dateConverter.convert(product.getApplyDateString()));
-        product.setAuditDate(dateConverter.convert(product.getAuditDateString()));
-        product.setStartTime(dateConverter.convert(product.getStartTimeString()));
-        product.setEndTime(dateConverter.convert(product.getEndTimeString()));
+        product.setApplyDate(DateConverter.convert(product.getApplyDateString(), this.formmater));
+        product.setAuditDate(DateConverter.convert(product.getAuditDateString(), this.formmater));
+        product.setStartTime(DateConverter.convert(product.getStartTimeString(), this.formmater));
+        product.setEndTime(DateConverter.convert(product.getEndTimeString(), this.formmater));
         productService.updateProduct(product);
         return "redirect:/product/listall";
     }
