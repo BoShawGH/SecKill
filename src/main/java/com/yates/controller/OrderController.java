@@ -21,6 +21,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -71,11 +72,22 @@ public class OrderController {
     @RequestMapping(value = "/payorder")
     public String payOrder(HttpServletRequest request, Order order){
         LocalDateTime now = LocalDateTime.now();
+        LocalDateTime payTime = DateConverter.convert("1900-01-01 01:00:00", "yyyy-MM-dd HH:mm:ss");
+        order.setPayTime(payTime);
         order.setCreateTime(now);
-        order.setPayState("1");
+        order.setPayState("0");
         String transerial = DateConverter.date2String(now, "yyyyMMddHHmmssSSS") + String.valueOf((int)(Math.random()*900 + 100));
         order.setTransSerial(transerial);
         orderService.insertOrder(order);
-        return "redirect:/uhome/index.jsp";
+        return "redirect:/uhome/index";
+    }
+
+    @RequestMapping(value = "/querybyid")
+    public String queryOrderByUserId(HttpServletRequest request, String userId) throws IdNotNullOrEmptyException{
+        if(userId == null || userId.equals(""))
+            throw new IdNotNullOrEmptyException();
+        List<Order> orders = orderService.queryOrderByUserId(userId);
+        request.setAttribute("orders", orders);
+        return "/order/view.jsp";
     }
 }

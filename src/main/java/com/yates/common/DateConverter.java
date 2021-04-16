@@ -8,13 +8,14 @@ import java.time.temporal.UnsupportedTemporalTypeException;
 
 public class DateConverter{
     public static LocalDateTime convert(String s, String formatter) {
+        LocalDateTime result = null;
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(formatter);
-        try{
-            return LocalDateTime.parse(s, dateTimeFormatter);
-        }catch(UnsupportedTemporalTypeException ex){
+        try {
+            result = LocalDateTime.parse(s, dateTimeFormatter);
+        } catch (UnsupportedTemporalTypeException ex) {
             ex.printStackTrace();
         }
-        return null;
+        return result;
     }
 
     public static String date2String(LocalDateTime localDateTime, String formatter){

@@ -95,4 +95,6 @@ public class SecUserController {
         request.setAttribute("users", users);
         return "/secuser/list.jsp";
     }
+
+
 }

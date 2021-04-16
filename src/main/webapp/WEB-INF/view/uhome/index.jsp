@@ -14,6 +14,7 @@
 <a href="${pageContext.request.contextPath}/sign/usignup">注册</a>
 <a href="${pageContext.request.contextPath}/sign/usignin">登录</a>
 <a href="${pageContext.request.contextPath}/sign/usignoff">退出登录</a>
+<a href="${pageContext.request.contextPath}/order/querybyid?userId=${user.userId}">订单查询</a>
 
 <table border="2">
     <thead>

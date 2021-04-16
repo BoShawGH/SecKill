@@ -4,11 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yates.dao.IOrderDao">
     <insert id="insertOrder" parameterType="order">
---         insert into t_seckill_order(productid, payamount, userid, transquantity, merchantid, createtime, paystatus, recevingaddress, recevingphone, recevingname, transserial)
---         value
---         (#{productId}, #{payAmount}, #{userId}, #{transQuantity}, #{merchantId}, #{createTime}, #{payStatus}, #{recevingAddress}, #{recevingPhone}, #{recevingName}, #{transSerial})
-        insert into t_seckill_order(transserial, productid, merchantid, productid, payamount, transquantity, createtime, paytime, paystate, receivingaddress, receivingphone, receivingname)
+        insert into t_seckill_order(transserial, productid, merchantid, userid, payamount, transquantity, createtime, paytime, paystate, receivingaddress, receivingphone, receivingname)
         value
-        (#{transSerial}, #{productId}, #{merchantId}, #{productId}, #{payAmount}, #{transQuantity}, #{createTime}, #{payTime}, #{payState}, #{receivingAddress}, #{receivingPhone}, #{receivingName})
+        (#{transSerial}, #{productId}, #{merchantId}, #{userId}, #{payAmount}, #{transQuantity}, #{createTime}, #{payTime}, #{payState}, #{receivingAddress}, #{receivingPhone}, #{receivingName})
     </insert>
+
+    <select id="queryOrderByUserId" parameterType="java.lang.String" resultType="order">
+        select * from t_seckill_order where userid = #{userId};
+    </select>
 </mapper>
