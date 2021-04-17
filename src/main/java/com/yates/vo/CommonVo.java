@@ -4,6 +4,15 @@ public class CommonVo {
     public SecUserVo secUserVo;
     public MerchantVo merchantVo;
     public ProductVo productVo;
+    public OrderVo orderVo;
+
+    public OrderVo getOrderVo() {
+        return orderVo;
+    }
+
+    public void setOrderVo(OrderVo orderVo) {
+        this.orderVo = orderVo;
+    }
 
     public ProductVo getProductVo() {
         return productVo;

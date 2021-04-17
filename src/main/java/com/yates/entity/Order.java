@@ -12,10 +12,11 @@ public class Order {
     private int transQuantity;
     private LocalDateTime createTime;
     private LocalDateTime payTime;
-    private String payState;
+    private String payState; // 0：未支付 1 已支付 2 发起退款 3 退款成功
     private String receivingAddress;
     private String receivingPhone;
     private String receivingName;
+    private String payType;
 
     public String getProductId() {
         return productId;
@@ -107,6 +108,14 @@ public class Order {
 
     public String getReceivingName() {
         return receivingName;
+    }
+
+    public String getPayType() {
+        return payType;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
     }
 
     public void setReceivingName(String recevingName) {

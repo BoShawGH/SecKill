@@ -12,4 +12,25 @@
     <select id="queryOrderByUserId" parameterType="java.lang.String" resultType="order">
         select * from t_seckill_order where userid = #{userId};
     </select>
+
+    <select id="merchantQuery" parameterType="java.lang.String" resultType="order">
+        select * from t_seckill_order where merchantid = #{merchantId};
+    </select>
+
+    <delete id="cancelOrder" parameterType="java.lang.String">
+        delete from t_seckill_order where transserial=#{transSerial};
+    </delete>
+
+    <select id="queryOrderByTransSerial" parameterType="java.lang.String" resultType="order">
+        select * from t_seckill_order where transserial=#{transSerial};
+    </select>
+
+
+    <update id="updateOrder" parameterType="commonVo">
+        update t_seckill_order set paystate=#{orderVo.payState}, paytime=#{orderVo.payTime}, paytype=#{orderVo.payType} where transserial=#{orderVo.transSerial};
+    </update>
+
+    <update id="updateOrderState" parameterType="commonVo">
+        update t_seckill_order set paystate=#{orderVo.payState} where transserial=#{orderVo.transSerial};
+    </update>
 </mapper>

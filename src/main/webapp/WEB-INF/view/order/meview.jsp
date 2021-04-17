@@ -3,7 +3,7 @@
 <head>
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<title>Title</title>
+    <title>Title</title>
 </head>
 <body>
 欢迎您：${user.userName}
@@ -28,8 +28,9 @@
             <td>${item.receivingAddress}</td>
             <td>${item.receivingPhone}</td>
             <td>
-                <c:if test="${item.payState==0}"><a href="${pageContext.request.contextPath}/order/topay?transSerial=${item.transSerial}">支付</a></c:if>
-                <c:if test="${item.payState==1}">支付完成</a> <input type="button" value="申请退款" onclick="applyRefund('${item.transSerial}')"> </c:if>
+                <c:if test="${item.payState==0}">未支付</c:if>
+                <c:if test="${item.payState==1}">支付完成</c:if>
+                <c:if test="${item.payState==2}"><a href="">退款审核通过</a>｜<a href="">退款审核不通过</a> </c:if>
                 <c:if test="${item.payState==3}">退款成功</c:if>
                 <c:if test="${item.payState==0}"><a href="${pageContext.request.contextPath}/order/cancelorder?transSerial=${item.transSerial}">取消订单</a></c:if>
             </td>
@@ -38,9 +39,4 @@
 
 </table>
 </body>
-<script type="text/javascript">
-    function applyRefund(transSerial){
-        window.location.href="${pageContext.request.contextPath}/order/applyrefund?transSerial="+transSerial;
-    }
-</script>
 </html>

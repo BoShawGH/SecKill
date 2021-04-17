@@ -16,5 +16,6 @@
 <a href="${pageContext.request.contextPath}/sign/msignup">注册</a>
 <a href="${pageContext.request.contextPath}/sign/msignin">登录</a>
 <a href="${pageContext.request.contextPath}/sign/msignoff">登出</a>
+<a href="${pageContext.request.contextPath}/order/merchantquery">交易列表</a>
 </body>
 </html>
