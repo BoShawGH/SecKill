@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yates.dao.IOrderDao">
+    <insert id="insertOrder" parameterType="order">
+        insert into t_seckill_order(transserial, productid, merchantid, userid, payamount, transquantity, createtime, paytime, paystate, receivingaddress, receivingphone, receivingname)
+        value
+        (#{transSerial}, #{productId}, #{merchantId}, #{userId}, #{payAmount}, #{transQuantity}, #{createTime}, #{payTime}, #{payState}, #{receivingAddress}, #{receivingPhone}, #{receivingName})
+    </insert>
+
+    <select id="queryOrderByUserId" parameterType="java.lang.String" resultType="order">
+        select * from t_seckill_order where userid = #{userId};
+    </select>
+
+    <select id="merchantQuery" parameterType="java.lang.String" resultType="order">
+        select * from t_seckill_order where merchantid = #{merchantId};
+    </select>
+
+    <delete id="cancelOrder" parameterType="java.lang.String">
+        delete from t_seckill_order where transserial=#{transSerial};
+    </delete>
+
+    <select id="queryOrderByTransSerial" parameterType="java.lang.String" resultType="order">
+        select * from t_seckill_order where transserial=#{transSerial};
+    </select>
+
+
+    <update id="updateOrder" parameterType="commonVo">
+        update t_seckill_order set paystate=#{orderVo.payState}, paytime=#{orderVo.payTime}, paytype=#{orderVo.payType} where transserial=#{orderVo.transSerial};
+    </update>
+
+    <update id="updateOrderState" parameterType="commonVo">
+        update t_seckill_order set paystate=#{orderVo.payState} where transserial=#{orderVo.transSerial};
+    </update>
+</mapper>

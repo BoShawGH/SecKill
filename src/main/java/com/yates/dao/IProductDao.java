@@ -1,16 +1,15 @@
 package com.yates.dao;
 
 import com.yates.entity.Product;
-import com.yates.vo.CustomVo;
+import com.yates.vo.CommonVo;
 
 import java.util.List;
 
 public interface IProductDao {
-     void applyProduct(Product product);
-     Product queryProductById(int id);
-     List<Product> listProducts(CustomVo vo);
-     void deleteProductById(int id);
-     void updateProduct(Product product);
-     void updateProductState(CustomVo customVo);
-
+    void insertProduct(Product product);
+    void deleteById(String productId);
+    void updateProduct(Product product);
+    void auditProduct(CommonVo commonVo);
+    Product queryProductById(String productId);
+    List<Product> queryAll(CommonVo commonVo);
 }

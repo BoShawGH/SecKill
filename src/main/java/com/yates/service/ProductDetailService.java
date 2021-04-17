@@ -1,38 +1,29 @@
 package com.yates.service;
 
+import com.yates.dao.IProductDao;
 import com.yates.dao.IProductDetailDao;
-import com.yates.entity.Product;
 import com.yates.entity.ProductDetail;
+import com.yates.vo.CommonVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProductDetailService {
     @Autowired
-    private IProductDetailDao iProductDetailDao;
+    public IProductDetailDao iProductDetailDao;
 
-    /**
-     * 增加商品详情
-     * @param productDetail
-     */
-    public void insertDetail(ProductDetail productDetail){
+    public  void insertDetail(ProductDetail productDetail){
         iProductDetailDao.insertDetail(productDetail);
     }
-
-    /**
-     * 更新商品详情
-     * @param productDetail
-     */
-    public void updateDetail(ProductDetail productDetail){
-        iProductDetailDao.updateDetail(productDetail);
+    public void deleteByProductId(String productId){
+        iProductDetailDao.deleteByProductId(productId);
     }
-
-    /**
-     * 查询商品详情
-     * @param id
-     * @return
-     */
-    public ProductDetail queryById(int id){
-        return iProductDetailDao.queryById(id);
+    public void updateDetail(ProductDetail detail){
+        iProductDetailDao.updateDetail(detail);
+    }
+    public ProductDetail queryByProductId(String productId){
+        return iProductDetailDao.queryByProductId(productId);
     }
 }

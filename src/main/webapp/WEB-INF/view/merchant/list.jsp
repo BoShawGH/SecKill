@@ -27,16 +27,16 @@
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${merchantlist}" var="item">
+        <c:forEach items="${merchants}" var="item">
         <tr>
             <td>${item.merchantName}</td>
             <td>${item.merchantShopname}</td>
             <td>${item.merchantAccount}</td>
             <td>${item.merchantPassword}</td>
             <td>${item.merchantScope}</td>
-            <td><a href="${pageContext.request.contextPath}/merchant/querybyid?id=${item.id}">详情</a>|
-                <a href="${pageContext.request.contextPath}/merchant/toupdate?id=${item.id}">更新</a>|
-                <a href="${pageContext.request.contextPath}/merchant/delete?id=${item.id}">删除</a> </td>
+            <td><a href="${pageContext.request.contextPath}/merchant/querybyid?merchantId=${item.merchantId}">详情</a>|
+                <a href="${pageContext.request.contextPath}/merchant/toupdate?merchantId=${item.merchantId}">更新</a>|
+                <a href="${pageContext.request.contextPath}/merchant/delete?merchantId=${item.merchantId}">删除</a> </td>
         </tr>
         </c:forEach>
     </tbody>

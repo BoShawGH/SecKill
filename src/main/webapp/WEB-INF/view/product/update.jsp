@@ -9,16 +9,19 @@
 </head>
 <body>
 <form id="productInfo" action="${pageContext.request.contextPath}/product/update">
-    <input name="id" value="${product.id}" type="hidden"/>
+    <input name="productId" value="${product.productId}" type="hidden"/>
     <input name="merchantId" value="${product.merchantId}" type="hidden">
-    商品编号：<input name="productId" value="${product.productId}"></br>
+<%--    <input name="applyDate" value="${product.applyDate}" type="hidden">--%>
+<%--    <input name="startTime" value="${product.startTime}" type="hidden">--%>
+<%--    <input name="endTime" value="${product.endTime}" type="hidden">--%>
+<%--    <input name="auditDate" value="${product.auditDate}" type="hidden">--%>
     商品名称：<input name="productTitle" value="${product.productTitle}"></br>
     商品图片：<input name="productPicture" value="${product.productPicture}"></br>
     原价格：  <input name="originPrice" value="${product.originPrice}"></br>
     申请时间：<input name="applyDateString" value="${product.applyDateString}" readonly></br>
     审核时间：<input name="auditDateString" value="${product.auditDateString}" readonly></br>
-    开始时间：<input name="startTimeString" value="${startTime}"></br>
-    结束时间：<input name="endTimeString" value="${endTime}"></br>
+    开始时间：<input name="startTimeString" value="${product.startTimeString}"></br>
+    结束时间：<input name="endTimeString" value="${product.endTimeString}"></br>
     秒杀价格：<input name="secPrice" value="${product.secPrice}"></br>
     商品库存：<input name="productCount" value="${product.productCount}"></br>
     剩余库存：<input name="stockCount" value="${product.stockCount}"></br>

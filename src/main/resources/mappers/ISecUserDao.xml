@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yates.dao.ISecUserDao">
+    <insert id="insertUser" parameterType="user">
+        insert into t_seckill_user(userid, username, useraccount, userpassword, usergender, userage, useraddress, useremail)
+            value(#{userId}, #{userName}, #{userAccount}, #{userPassword}, #{userGender}, #{userAge}, #{userAddress}, #{userEmail})
+    </insert>
+
+    <update id="updateUser" parameterType="user">
+        update t_seckill_user set username=#{userName}, useraccount=#{userAccount}, userpassword=#{userPassword}, usergender=#{userGender}, userage=#{userAge}, useraddress=#{userAddress}, useremail=#{userEmail} where userid=#{userId}
+    </update>
+
+    <select id="queryUserById" parameterType="java.lang.String" resultType="user">
+        select * from t_seckill_user where userid=#{value}
+    </select>
+
+    <select id="deleteUserById" parameterType="java.lang.String">
+        delete from t_seckill_user where userid=#{value}
+    </select>
+
+    <sql id="commonSql">
+        <if test="secUserVo != null">
+            <if test="secUserVo.userId != null and secUserVo.userId != ''">
+                and secUserVo.userId = "${secUserVo.userName}"
+            </if>
+            <if test="secUserVo.userName != null and secUserVo.userName != ''">
+                and secUserVo.userName = "${secUserVo.userName}"
+            </if>
+            <if test="secUserVo.userAccount != null and secUserVo.userAccount != ''">
+                and secUserVo.userAccount = "${secUserVo.userAccount}"
+            </if>
+            <if test="secUserVo.userPassword != null and secUserVo.userPassword != ''">
+                and secUserVo.userPassword = "${secUserVo.userPassword}"
+            </if>
+            <if test="secUserVo.userGender != null and secUserVo.userGender != ''">
+                and secUserVo.userGender = "${secUserVo.userGender}"
+            </if>
+            <if test="secUserVo.userAge != null and secUserVo.userAge != ''">
+                and secUserVo.userAge = "${secUserVo.userAge}"
+            </if>
+            <if test="secUserVo.userAddress != null and secUserVo.userAddress != ''">
+                and secUserVo.userAddress = "${secUserVo.userAddress}"
+            </if>
+            <if test="user.userEmail != null and secUserVo.userEmail != ''">
+                and secUserVo.userEmail = "${secUserVo.userEmail}"
+            </if>
+        </if>
+    </sql>
+
+    <select id="queryAll" parameterType="commonVo" resultType="user">
+        select * from t_seckill_user
+        <where>
+            <include refid="commonSql"></include>
+        </where>
+    </select>
+
+    <select id="queryUserByAccount" parameterType="java.lang.String" resultType="user">
+        select * from t_seckill_user where useraccount=#{value}
+    </select>
+</mapper>

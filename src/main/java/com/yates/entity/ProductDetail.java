@@ -1,40 +1,28 @@
 package com.yates.entity;
 
-/**
- * 商品详细
- */
 public class ProductDetail {
-    private int id;     //主键
-    private int productId;      //商品id
-    private int merchantId;     //商家id
-    private String productPlace;    //商品产地
-    private String productName;     //商品名称
-    private String brandName;       //商标
-    private String productWeight;   //商品重量
-    private String specification;   //规格与包装
-    private String productDetailPicture;    //商品详情图片
+    private String productId;
+    private String merchantId;
+    private String productPlace;
+    private String productName;
+    private String brandName;
+    private String productWeight;
+    private String specification;
+    private String productDetailPicture;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
-    public int getMerchantId() {
+    public String getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(int merchantId) {
+    public void setMerchantId(String merchantId) {
         this.merchantId = merchantId;
     }
 
@@ -84,20 +72,5 @@ public class ProductDetail {
 
     public void setProductDetailPicture(String productDetailPicture) {
         this.productDetailPicture = productDetailPicture;
-    }
-
-    @Override
-    public String toString() {
-        return "ProductDetail{" +
-                "id=" + id +
-                ", productId=" + productId +
-                ", merchantId=" + merchantId +
-                ", productPlace='" + productPlace + '\'' +
-                ", productName='" + productName + '\'' +
-                ", brandName='" + brandName + '\'' +
-                ", productWeight='" + productWeight + '\'' +
-                ", specification='" + specification + '\'' +
-                ", productDetailPicture='" + productDetailPicture + '\'' +
-                '}';
     }
 }

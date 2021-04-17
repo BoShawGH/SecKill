@@ -9,7 +9,7 @@
 </head>
 <body>
 <form id="userInfo">
-    <input name="id" value="${user.id}" type="hidden"/>
+    <input name="id" value="${user.userId}" type="hidden"/>
     用户姓名:<input name="userName" value="${user.userName}" readonly></br>
     用户账号:<input name="userAccount" value="${user.userAccount}" readonly></br>
     用户密码:<input name="userPassword" value="${user.userPassword}" readonly></br>

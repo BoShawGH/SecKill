@@ -5,29 +5,33 @@
 
 <mapper namespace="com.yates.dao.IMerchantDao">
 
-    <select id="queryMerchantById" parameterType="int" resultType="merchant">
-		select * from t_seckill_merchant where id = #{id}
+    <select id="queryMerchantById" parameterType="java.lang.String" resultType="merchant">
+		select * from t_seckill_merchant where merchantid = #{value}
 	</select>
 
+    <select id="queryMerchantByAccount" parameterType="java.lang.String" resultType="merchant">
+        select * from t_seckill_merchant where merchantaccount=#{value}
+    </select>
     <insert id="insertMerchant" parameterType="merchant">
-        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
-        insert into t_seckill_merchant(merchantname,merchantaccount,merchantpassword,merchantscope,merchantshopname) value(#{merchantName},#{merchantAccount},#{merchantPassword},#{merchantScope}, #{merchantShopname})
+        insert into t_seckill_merchant(merchantid, merchantname, merchantaccount, merchantpassword, merchantscope, merchantshopname)
+        value(#{merchantId}, #{merchantName},#{merchantAccount},#{merchantPassword},#{merchantScope}, #{merchantShopname})
     </insert>
 
     <update id="updateMerchant" parameterType="merchant">
         update t_seckill_merchant set
         merchantname=#{merchantName}, merchantaccount=#{merchantAccount}, merchantpassword=#{merchantPassword},
-        merchantscope=#{merchantScope}, merchantshopname=#{merchantShopname} where id=#{id}
+        merchantscope=#{merchantScope}, merchantshopname=#{merchantShopname} where merchantid=#{merchantId}
     </update>
 
-    <delete id="deleteMerchantById" parameterType="int">
-        delete from t_seckill_merchant where id = #{id}
+    <delete id="deleteMerchantById" parameterType="java.lang.String">
+        delete from t_seckill_merchant where merchantid = #{value}
     </delete>
 
     <sql id="customSql">
          <if test="merchantVo != null">
+             <if test="merchantVo.merchantId != null and merchantVo.merchantId!=''">
+                 and merchantVo.merchantId = "${merchantVo.merchantId}"
+             </if>
              <if test="merchantVo.merchantName != null and merchantVo.merchantName != ''">
                  and merchantVo.merchantName = "${merchantVo.merchantName}"
              </if>
@@ -46,7 +50,7 @@
          </if>
     </sql>
 
-    <select id="queryMerchants" parameterType="commonVo" resultType="merchant">
+    <select id="queryAll" parameterType="commonVo" resultType="merchant">
         select * from t_seckill_merchant
         <where>
             <include refid="customSql"></include>

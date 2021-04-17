@@ -1,21 +1,26 @@
 package com.yates.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Product {
-    @Column
-    private int id;
-    private int productId;
+
+    private String productId;
+    private String merchantId;
     private String productTitle;
     private String productPicture;
     private BigDecimal originPrice;
-    private int merchantId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime applyDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime auditDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime endTime;
     private String applyDateString = "";
     private String auditDateString = "";
@@ -24,27 +29,18 @@ public class Product {
     private int auditState = 0; //0：未审核 1：审核通过 2：审核不通过
     private String stateString = "";
 
-
-
     private BigDecimal secPrice;
     private int productCount;
     private int stockCount;
     private String description;
 
     private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -72,11 +68,11 @@ public class Product {
         this.originPrice = originPrice;
     }
 
-    public int getMerchantId() {
+    public String getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(int merchantId) {
+    public void setMerchantId(String merchantId) {
         this.merchantId = merchantId;
     }
 
@@ -201,21 +197,26 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
-                ", productId=" + productId +
+                "productId='" + productId + '\'' +
+                ", merchantId='" + merchantId + '\'' +
                 ", productTitle='" + productTitle + '\'' +
                 ", productPicture='" + productPicture + '\'' +
                 ", originPrice=" + originPrice +
-                ", merchantId=" + merchantId +
                 ", applyDate=" + applyDate +
                 ", auditDate=" + auditDate +
-                ", auditState=" + auditState +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
+                ", applyDateString='" + applyDateString + '\'' +
+                ", auditDateString='" + auditDateString + '\'' +
+                ", startTimeString='" + startTimeString + '\'' +
+                ", endTimeString='" + endTimeString + '\'' +
+                ", auditState=" + auditState +
+                ", stateString='" + stateString + '\'' +
                 ", secPrice=" + secPrice +
                 ", productCount=" + productCount +
                 ", stockCount=" + stockCount +
                 ", description='" + description + '\'' +
+                ", dateTimeFormatter=" + dateTimeFormatter +
                 '}';
     }
 }

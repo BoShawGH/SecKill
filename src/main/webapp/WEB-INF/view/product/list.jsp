@@ -7,7 +7,7 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
 <body>
-<div style=" text-align: center;"><a href="${pageContext.request.contextPath}/product/toapply">申请秒杀商品</a></div>
+<div style=" text-align: center;"><a href="${pageContext.request.contextPath}/product/toinsert">申请秒杀商品</a></div>
 <table border="2">
     <thead>
         <tr>
@@ -35,32 +35,39 @@
         <td>${item.stockCount}</td>
         <td>${item.stateString}</td>
         <td>
-            <a href="${pageContext.request.contextPath}/product/toupdate?id=${item.id}">修改</a>||
-            <a href="${pageContext.request.contextPath}/product/delete?id=${item.id}">删除</a>||
-            <a href="${pageContext.request.contextPath}/product/querybyid?id=${item.id}">详情</a>||
-            <a href="/product/toupdatestate?id=${item.id}">审核</a>
+            <a href="${pageContext.request.contextPath}/product/toupdate?productId=${item.productId}">修改</a>||
+            <a href="${pageContext.request.contextPath}/product/delete?productId=${item.productId}">删除</a>||
+            <a href="${pageContext.request.contextPath}/product/query?productId=${item.productId}">详情</a>||
+            <a href="${pageContext.request.contextPath}/product/toaudit?productId=${item.productId}">审核</a>||
+            <a href="${pageContext.request.contextPath}/detail/toinsert?productId=${item.productId}">添加商品详情</a>||
+<%--            <input type="button" value="添加商品详情" onclick="addDetail(this, ${item.productId})"></input>--%>
+            <a href="${pageContext.request.contextPath}/detail/query?productId=${item.productId}">查看商品详情</a>||
         </td>
 
     </tr>
-<%--    <form id="${item.id}">--%>
-<%--        商品编号：<input name="productId" value="${item.productId}" readonly></br>--%>
-<%--        商品名称：<input name="productTitle" value="${item.productTitle}" readonly></br>--%>
-<%--        商品图片：<input name="productPicture" value="${item.productPicture}" readonly></br>--%>
-<%--        原价格：<input name="originPrice" value="${item.originPrice}" readonly></br>--%>
-<%--        商家号：<input name="merchantId" value="${item.merchantId}" readonly></br>--%>
-<%--        添加日期：<input name="applyDate" value="${item.applyDate}" readonly></br>--%>
-<%--        修改日期：<input name="auditDate" value="${item.auditDate}" readonly></br>--%>
-<%--        审核状态：<input name="auditState" value="${item.auditState}" readonly></br>--%>
-<%--        开始时间：<input name="startTime" value="${item.startTime}" readonly></br>--%>
-<%--        结束时间：<input name="endTime" value="${item.endTime}" readonly></br>--%>
-<%--        秒杀价格：<input name="secPrice" value="${item.secPrice}" readonly></br>--%>
-<%--        商品库存：<input name="productCount" value="${item.productCount}" readonly></br>--%>
-<%--        剩余库存：<input name="stockCount" value="${item.stockCount}" readonly></br>--%>
-<%--        描述：<input name="description" value="${item.description}" readonly></br>--%>
-<%--    </form>--%>
 </c:forEach>
 </table>
 
 
 </body>
+<script>
+    function addDetail(obj, productId){
+        $.ajax({
+            async: false,
+            data: {"productId":productId},
+            dataType:"json",
+            contentType:'application/json;charset=utf-8',
+            url: '${pageContext.request.contextPath}/detail/toinsert',
+            type:'post',
+            success:function(result) {
+                if(result != "false"){
+                    alert("正在跳转...");
+                    location.href="${pageContext.request.contextPath}/detail/insert";
+                }else{
+                    alert("不能重复添加详细信息");
+                }
+            }
+        });
+    }
+</script>
 </html>

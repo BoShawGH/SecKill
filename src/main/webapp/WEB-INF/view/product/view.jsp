@@ -9,7 +9,6 @@
 </head>
 <body>
 <form id="productInfo">
-    <input name="id" value="${product.id}" type="hidden"/>
     商品编号：<input name="productId" value="${product.productId}" readonly></br>
     商品名称：<input name="productTitle" value="${product.productTitle}" readonly></br>
     商品图片：<input name="productPicture" value="${product.productPicture}" readonly></br>

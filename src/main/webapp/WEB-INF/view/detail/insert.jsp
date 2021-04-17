@@ -11,7 +11,7 @@
 <form action="${pageContext.request.contextPath}/detail/insert" id="detailForm">
     产品编号：<input name="productId" value="${productId}" readonly></br>
     商家编号：<input name="merchantId" value="${merchantId}" readonly></br>
-    商品名称：<input name="productName"></br>
+    商品名称：<input name="productName" value="${productTitle}"></br>
     商品产地：<input name="productPlace"></br>
     商品商标：<input name="brandName"></br>
     商品重量：<input name="productWeight"></br>

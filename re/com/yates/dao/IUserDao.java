@@ -10,6 +10,6 @@ public interface IUserDao {
     void deleteUserById(int id);
     void insertUser(User user);
     void updateUser(User user);
-
+    User queryByAccount(String account);
     List<User> queryUsers(CustomVo customVo);
 }

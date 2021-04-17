@@ -1,37 +1,28 @@
 package com.yates.vo;
 
 import com.yates.entity.Product;
-import org.springframework.cglib.core.Local;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class ProductVo extends Product {
+    public BigDecimal secPriceRangeFloor;       //秒杀价格下限
+    public BigDecimal secPriceRangeCeil;        //秒杀价格上限
+    public BigDecimal originPriceRangeFloor;    //原价格格下限
+    public BigDecimal originPriceRangeCeil;     //原价格上限
+    public LocalDateTime applyDateRangeFloor;   //申请时间下限
+    public LocalDateTime applyDateRangeCeil;    //申请时间上限
+    public LocalDateTime auditDateRangeFloor;   //审核时间下限
+    public LocalDateTime auditDateRangeCeil;    //审核时间上限
+    public LocalDateTime startTimeRangeFloor;   //开始时间下限
+    public LocalDateTime startTimeRangeCeil;    //开始时间上限
+    public LocalDateTime endTimeRangeFloor;     //结束时间下限
+    public LocalDateTime endTimeRangeCeil;      //开始时间上限
+    public int productCountRangeFloor;          //产品数量下限
+    public int productCountRangeCeil;           //产品数量上限
+    public int stockCountFloor;                 //库存数量下限
+    public int stockCountCeil;                  //库存数量上限
 
-    private BigDecimal secPriceRangeFloor; // 秒杀价格查询下限
-    private BigDecimal secPriceRangeCeil;  // 秒杀价格查询上限
-
-    private BigDecimal originPriceRangeFloor;   // 原价格查询下限
-    private BigDecimal originPriceRangeCeil;    // 原价格查询上限
-
-    private LocalDateTime applyDateRangeFloor;  //申请时间查询下限
-    private LocalDateTime applyDateRangeCeil;   //申请时间查询上限
-
-    private LocalDateTime auditDateRangeFloor;  //审核时间查询下限
-    private LocalDateTime auditDateRangeCeil;   //审核时间查询上限
-
-    private LocalDateTime startTimeRangeFloor;  //秒杀开始时间查询下限
-    private LocalDateTime startTimeRangeCeil;     //秒杀开始时间查询上限
-
-    private LocalDateTime endTimeRangeFloor;  //秒杀结束时间查询下限
-    private LocalDateTime endTimeRangeCeil;     //秒杀结束时间查询上限
-
-    private int productCountRangeFloor;     //秒杀商品数查询下限
-    private int productCountRangeCeil;      //秒杀商品数查询上限
-
-    private int stockCountFloor;            //秒杀商品库存查询下限
-    private int stockCountCeil;             //秒杀商品库存查询上限
     public BigDecimal getSecPriceRangeFloor() {
         return secPriceRangeFloor;
     }
