@@ -12,7 +12,7 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/order/insert" id="info">
+    <form action="${pageContext.request.contextPath}/order/togenerate" id="info">
         购买数量：<input type="text" name="num" value="1">
         <input type="hidden" id="productId" name="productId" value="${product.productId}">
         <table border="1">

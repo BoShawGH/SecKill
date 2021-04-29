@@ -44,7 +44,7 @@ public class MerchantController{
             throw new IdNotNullOrEmptyException();
         Merchant merchant = merchantService.queryMerchantById(merchantId);
         request.setAttribute("merchant", merchant);
-        return "/merchant/update";
+        return "/merchant/update.jsp";
     }
 
     @RequestMapping(value="/update")
@@ -59,7 +59,7 @@ public class MerchantController{
             throw new IdNotNullOrEmptyException();
         Merchant merchant = merchantService.queryMerchantById(merchantId);
         request.setAttribute("merchant", merchant);
-        return "/merchant/query";
+        return "/merchant/query.jsp";
     }
 
     @RequestMapping(value = "/querybyaccount")
@@ -68,7 +68,7 @@ public class MerchantController{
             throw new IdNotNullOrEmptyException();
         Merchant merchant = merchantService.queryMerchantByAccount(merchantAccount);
         request.setAttribute("merchant", merchant);
-        return "/merchant/query";
+        return "/merchant/query.jsp";
     }
 
     @RequestMapping(value = "/listall")

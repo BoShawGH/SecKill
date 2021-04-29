@@ -27,7 +27,7 @@
 
 
     <update id="updateOrder" parameterType="commonVo">
-        update t_seckill_order set paystate=#{orderVo.payState}, paytime=#{orderVo.payTime}, paytype=#{orderVo.payType} where transserial=#{orderVo.transSerial};
+        update t_seckill_order set paystate=#{orderVo.payState}, paytime=#{orderVo.payTime}, paytype=#{orderVo.payType}, receivingaddress=#{orderVo.receivingAddress}, receivingphone=#{orderVo.receivingPhone}, receivingname=#{orderVo.receivingName} where transserial=#{orderVo.transSerial};
     </update>
 
     <update id="updateOrderState" parameterType="commonVo">

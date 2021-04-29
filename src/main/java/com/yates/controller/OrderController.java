@@ -1,20 +1,22 @@
 package com.yates.controller;
 
+import com.mysql.cj.Session;
 import com.sun.tools.corba.se.idl.constExpr.Or;
 import com.yates.common.DateConverter;
-import com.yates.entity.*;
+import com.yates.entity.Order;
+import com.yates.entity.Product;
+import com.yates.entity.ProductDetail;
+import com.yates.entity.SecUser;
 import com.yates.exception.IdNotNullOrEmptyException;
 import com.yates.service.OrderService;
 import com.yates.service.ProductDetailService;
 import com.yates.service.ProductService;
-import com.yates.service.SecUserService;
 import com.yates.service.pay.AliPay;
 import com.yates.service.pay.BankPay;
 import com.yates.service.pay.WeChatPay;
 import com.yates.vo.CommonVo;
 import com.yates.vo.OrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,28 +24,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Random;
 
 @Controller
-@RequestMapping(value = "order")
+@RequestMapping(value = "/order")
 public class OrderController {
     @Autowired
-    public OrderService orderService;
-
+    private OrderService orderService;
     @Autowired
-    public ProductDetailService productDetailService;
-
+    private ProductService productService;
     @Autowired
-    public ProductService productService;
+    private ProductDetailService productDetailService;
     @Autowired
-    AliPay aliPay;
+    private AliPay aliPay;
     @Autowired
-    WeChatPay weChatPay;
+    private BankPay bankPay;
     @Autowired
-    BankPay bankPay;
+    private WeChatPay weChatPay;
 
     @RequestMapping(value = "/detail")
     public String detail(HttpServletRequest request, String productId) throws IdNotNullOrEmptyException {
@@ -60,130 +57,75 @@ public class OrderController {
         return "/order/sellDetail.jsp";
     }
 
-    @RequestMapping(value = "/insert")
-    public String generateOrder(HttpServletRequest request, int num, String productId){
+    @RequestMapping(value = "/togenerate")
+    public String toGenerateOrder(HttpServletRequest request, String productId, int num){
+        LocalDateTime now = LocalDateTime.now();
+        Order order = new Order();
+        order.setProductId(productId);
         Product product = productService.queryProductById(productId);
-        request.setAttribute("product", product);
-        request.setAttribute("num", num);
-        BigDecimal payAmount = product.getSecPrice().multiply(BigDecimal.valueOf(num));
-        request.setAttribute("payAmount", payAmount);
+        if(product != null){
+            order.setMerchantId(product.getMerchantId());
+        }
         HttpSession session = request.getSession();
         SecUser user = (SecUser)session.getAttribute("user");
         if(user != null){
-            request.setAttribute("userId", user.getUserId());
-        }else{
-            request.setAttribute("error", "请重新登录");
-            return "/secuser/signin.jsp";
+            order.setUserId(user.getUserId());
         }
-        return "/order/payorder.jsp";
-    }
-
-    @RequestMapping(value = "/payorder")
-    public String payOrder(HttpServletRequest request, Order order){
-        LocalDateTime now = LocalDateTime.now();
+        BigDecimal payAmount = product.getSecPrice().multiply(BigDecimal.valueOf(num));
+        order.setCreateTime(now);
+        order.setPayAmount(payAmount);
+        order.setTransQuantity(num);
         LocalDateTime payTime = DateConverter.convert("1900-01-01 01:00:00", "yyyy-MM-dd HH:mm:ss");
         order.setPayTime(payTime);
-        order.setCreateTime(now);
         order.setPayState("0");
-        String transerial = DateConverter.date2String(now, "yyyyMMddHHmmssSSS") + String.valueOf((int)(Math.random()*900 + 100));
-        order.setTransSerial(transerial);
+        String transserial = DateConverter.date2String(now, "yyyyMMddHHmmssSSS") + String.valueOf((int)(Math.random()*900 + 100));
+        order.setTransSerial(transserial);
         orderService.insertOrder(order);
-        return "redirect:/uhome/index";
-    }
-
-    @RequestMapping(value = "/querybyid")
-    public String queryOrderByUserId(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        SecUser user = (SecUser)session.getAttribute("user");
-        if(user == null){
-            request.setAttribute("errorInfo", "未登录");
-            return "/secuser/signin.jsp";
-        }
-        String userId = user.getUserId();
-        List<Order> orders = orderService.queryOrderByUserId(userId);
-        request.setAttribute("orders", orders);
-        return "/order/view.jsp";
-    }
-
-    @RequestMapping(value = "/cancelorder")
-    public String cancelOrder(HttpServletRequest request, String transSerial) throws IdNotNullOrEmptyException{
-        if(transSerial == null || transSerial.equals(""))
-            throw new IdNotNullOrEmptyException("流水号不合法");
-        orderService.cancelOrder(transSerial);
-        return "redirect:/uhome/index";
-    }
-
-    @RequestMapping(value = "/topay")
-    public String topay(HttpServletRequest request, String transSerial){
-        Order order = orderService.queryOrderByTransSerial(transSerial);
-        HttpSession session = request.getSession();
-        if(order == null)
-            return "redirect:/order/querybyid";
-        session.setAttribute("transSerial", transSerial);
-        Product product = productService.queryProductById(order.getProductId());
+        session.setAttribute("transserial", transserial);
         request.setAttribute("product", product);
-        request.setAttribute("num", order.getTransQuantity());
-        request.setAttribute("payAmount", order.getPayAmount());
+        request.setAttribute("num", num);
+        request.setAttribute("payAmount", payAmount);
         return "/order/payorder.jsp";
     }
 
-    /**
-     *
-     * @param request
-     * @param payType 1:AliPay 2:WeChat 3:BankCard
-     * @param payAmount
-     * @return
-     */
-    @RequestMapping(value="/pay")
-    public String payOrder(HttpServletRequest request,String payType,BigDecimal payAmount){
-        int payRes = 0;
-        String transSerial = (String)request.getSession().getAttribute("transSerial");
+    @RequestMapping(value = "pay")
+    public String pay(HttpServletRequest request, String payType, BigDecimal payAmount, Order order){
+        int payRes=0;
+        HttpSession session = request.getSession();
+        String transserial = (String)session.getAttribute("transserial");
         if("1".equals(payType)) {
-            payRes = aliPay.payWithOrder(payAmount, transSerial);
+            payRes = aliPay.payWithOrder(payAmount, transserial);
         }else if("2".equals(payType)){
-            payRes = weChatPay.payWithOrder(payAmount, transSerial);
+            payRes = weChatPay.payWithOrder(payAmount, transserial);
         }else{
-            payRes = bankPay.payWithOrder(payAmount,transSerial);
+            payRes = bankPay.payWithOrder(payAmount,transserial);
         }
         if(payRes != 0) {
             CommonVo commonVo = new CommonVo();
             OrderVo orderVo = new OrderVo();
-//            Order order = orderService.queryOrderByTransSerial(transSerial);
-//            order.setPayType(payType);
-//            order.setPayState(String.valueOf(payRes));
-            orderVo.setTransSerial(transSerial);
+            orderVo.setTransSerial(transserial);
             orderVo.setPayState(String.valueOf(payRes));
-            orderVo.setPayType(payType);
             orderVo.setPayTime(LocalDateTime.now());
+            orderVo.setPayType(payType);
+            orderVo.setReceivingAddress(order.getReceivingAddress());
+            orderVo.setReceivingPhone(order.getReceivingPhone());
+            orderVo.setReceivingName(order.getReceivingName());
             commonVo.setOrderVo(orderVo);
             orderService.updateOrder(commonVo);
         }
-        return "redirect:/order/querybyid";
+        session.removeAttribute("transserial");
+        session.removeAttribute("product");
+        session.removeAttribute("payAmount");
+        session.removeAttribute("num");
+        return "redirect:/uhome/index";
     }
 
-    @RequestMapping(value = "merchantquery")
-    public String merchantQuery(HttpServletRequest request){
+    @RequestMapping(value = "querybyid")
+    public String queryById(HttpServletRequest request){
         HttpSession session = request.getSession();
-        Merchant merchant = (Merchant)session.getAttribute("merchant");
-        if(merchant == null){
-            String errorInfo = "错误";
-            request.setAttribute("errorInfo", errorInfo);
-            return "/mhome/error.jsp";
-        }
-        List<Order> orders = orderService.merchantQuery(merchant.getMerchantId());
+        SecUser user = (SecUser) session.getAttribute("user");
+        List<Order> orders = orderService.queryOrderByUserId(user.getUserId());
         request.setAttribute("orders", orders);
         return "/order/meview.jsp";
-    }
-
-    @RequestMapping(value = "/applyrefund")
-    public String applyRefund(HttpServletRequest request, String transSerial){
-        HttpSession session = request.getSession();
-        SecUser user = (SecUser)session.getAttribute("user");
-        if(user != null) {
-            orderService.applyRefund(transSerial, "3");
-            return "redirect:/order/querybyid";
-        }else{
-            return "/secuser/signin.jsp";
-        }
     }
 }

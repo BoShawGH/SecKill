@@ -13,9 +13,9 @@ public class Order {
     private LocalDateTime createTime;
     private LocalDateTime payTime;
     private String payState; // 0：未支付 1 已支付 2 发起退款 3 退款成功
-    private String receivingAddress;
-    private String receivingPhone;
-    private String receivingName;
+    private String receivingAddress="";
+    private String receivingPhone="";
+    private String receivingName="";
     private String payType;
 
     public String getProductId() {
